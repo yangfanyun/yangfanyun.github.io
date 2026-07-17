@@ -1,0 +1,277 @@
+---
+title: 机场使用常见问题解答 - 新手入门必看
+layout: page
+permalink: /faq/
+description: 汇集机场使用中的各种常见问题，从购买订阅、配置Clash客户端、节点选择到网络提速技巧，所有新手可能遇到的坑和解决方案都在这里，一看就懂。
+keywords: 机场常见问题,机场使用教程,Clash配置问题,节点无法连接,网络加速FAQ,机场订阅教程
+breadcrumb:
+  - name: 常见问题
+    url: /faq/
+---
+
+<div class="mb-8">
+  <p class="text-lg text-gray-600 dark:text-gray-300">
+    这里汇集了关于机场使用的常见问题与详细解答。如果您的问题不在列表中，欢迎通过联系我们页面提出。
+  </p>
+</div>
+
+<!-- FAQ Schema JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "什么是机场/代理服务？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "机场（代理服务）是一种提供网络加速和跨境访问的服务。通过订阅机场的节点，您可以访问海外网站、观看流媒体、玩游戏等。机场通常提供多种协议（SS/SSR/V2Ray/Trojan）和多个地区的节点供选择。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何选择适合自己的机场？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "选择机场需要考虑：价格预算、节点数量与地区、线路质量（直连/中转/IEPL）、流媒体解锁能力、客服响应速度、以及是否支持您正在使用的客户端协议。建议先购买月付或试用套餐测试实际速度。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Clash 订阅链接如何使用？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在 Clash 客户端中，进入配置或订阅页面，粘贴机场提供的订阅链接，点击更新即可自动拉取节点配置。推荐使用 Clash Meta 或 Clash Verge 客户端获得最佳体验。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "机场节点速度慢怎么办？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以尝试：切换不同地区的节点、更换协议类型、在客户端中启用快速重连或负载均衡功能、检查本地网络环境、联系机场客服反馈。如果长期速度不理想，建议更换机场。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "杨帆云真的只要一元吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "杨帆云是品牌名称，并非指价格仅为一元。杨帆云以高性价比著称，入门套餐通常低至5-10元/月，适合预算有限的用户。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "机场和 VPN 有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "机场通常基于代理协议（SS/SSR/V2Ray/Trojan），而 VPN 使用隧道协议（OpenVPN/IPSec/WireGuard）。机场的优势在于：更灵活的节点切换、更细粒度的规则分流、更低的延迟。VPN 的优势在于：系统级全局代理、配置相对简单。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "订阅链接过期了怎么办？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "订阅链接过期通常是因为套餐到期或机场更换了订阅地址。您可以：1）登录机场网站续费套餐；2）在用户中心复制最新的订阅链接；3）在客户端中更新订阅。如果持续失效，请联系机场客服。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "什么是 IEPL 专线？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IEPL（International Ethernet Private Line）国际以太网专线，是一种高质量的国际专线服务。相比普通中转线路，IEPL 专线具有更低的延迟、更高的稳定性和更少的丢包率。使用 IEPL 专线的机场价格通常较高，但网络体验也更好。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何测试机场节点的速度？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "推荐使用以下方法：1）在客户端中逐个节点连接测试实际延迟；2）使用 speedtest.net 或 fast.com 测速；3）观看 YouTube 4K 视频检测缓冲速度；4）在不同时间段（特别是晚高峰）测试稳定性。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "机场会影响我的网络安全吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "选择知名且信誉良好的机场通常不会有大问题。建议：1）选择支持加密协议的机场；2）避免使用免费机场（可能存在流量监控风险）；3）在处理敏感信息时建议配合 HTTPS；4）定期更新密码和订阅链接。"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="space-y-4" x-data="{ activeFaq: null }">
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 1 ? null : 1" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">什么是机场/代理服务？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 1" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>机场（代理服务）是一种提供网络加速和跨境访问的服务。通过订阅机场的节点，您可以访问海外网站、观看流媒体、玩游戏等。</p>
+      <p class="mt-2">机场通常提供多种协议（SS/SSR/V2Ray/Trojan）和多个地区的节点供选择。用户通过订阅链接将节点导入客户端，即可实现科学上网。</p>
+      <p class="mt-2">与传统的 VPN 不同，机场更加灵活，支持规则分流（国内流量直连、国外流量代理），延迟更低，速度更快。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 2 ? null : 2" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">机场和 VPN 有什么区别？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 2" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p><strong>机场（代理）：</strong>基于代理协议（SS/SSR/V2Ray/Trojan），灵活规则分流，延迟低，节点切换方便，适合日常浏览和流媒体。</p>
+      <p class="mt-1"><strong>VPN：</strong>使用隧道协议（OpenVPN/IPSec/WireGuard），系统级全局代理，配置简单，但延迟较高，不够灵活。</p>
+      <p class="mt-2"><strong>选择建议：</strong>日常使用推荐机场（代理）；企业远程办公推荐 VPN。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 3 ? null : 3" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">如何选择适合自己的机场？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 3" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>选择机场需要从以下几个维度综合考虑：</p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><strong>价格：</strong>根据预算选择，入门级 ¥5-15/月，进阶级 ¥15-40/月，旗舰级 ¥40+/月</li>
+        <li><strong>节点数量与地区：</strong>节点越多越好，地区覆盖越广越好</li>
+        <li><strong>线路质量：</strong>直连 &lt; 中转 &lt; IEPL 专线，质量越高价格越贵</li>
+        <li><strong>流媒体解锁：</strong>如果需要看 Netflix、Disney+ 等，确认机场支持解锁</li>
+        <li><strong>协议支持：</strong>确认机场支持您客户端使用的协议（SS/SSR/V2Ray/Trojan）</li>
+        <li><strong>客服响应：</strong>有工单或群聊支持的机场更可靠</li>
+      </ul>
+      <p class="mt-2">建议先购买月付套餐或试用套餐进行实际测试。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 4 ? null : 4" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">Clash 订阅链接如何使用？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 4" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>使用 Clash 客户端订阅机场节点的步骤：</p>
+      <ol class="list-decimal pl-5 mt-2 space-y-1">
+        <li>下载并安装 Clash Meta 或 Clash Verge 客户端</li>
+        <li>打开客户端，找到「配置」或「订阅」页面</li>
+        <li>粘贴机场提供的订阅链接（通常以 https:// 开头）</li>
+        <li>点击「更新」或「导入」按钮</li>
+        <li>客户端会自动拉取并解析节点配置</li>
+        <li>在「代理」页面选择需要的节点或开启自动选择</li>
+      </ol>
+      <p class="mt-2">详细教程请参考 <a href="{{ '/tutorial/clash/' | relative_url }}" class="text-blue-600 dark:text-blue-400 hover:underline">Clash 配置教程</a>。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 5 ? null : 5" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">机场节点速度慢怎么办？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 5" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>如果感觉节点速度不理想，可以尝试以下方法：</p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><strong>切换节点：</strong>尝试连接不同地区的节点，选择延迟最低的</li>
+        <li><strong>更换协议：</strong>不同协议速度不同，V2Ray 和 Trojan 通常比 SS 更快</li>
+        <li><strong>开启负载均衡：</strong>在客户端中启用负载均衡或自动选择模式</li>
+        <li><strong>检查本地网络：</strong>确认本地网络正常，有线网络比 Wi-Fi 更稳定</li>
+        <li><strong>避开晚高峰：</strong>晚高峰（19:00-23:00）网络拥堵是正常现象</li>
+        <li><strong>联系客服：</strong>如果持续速度慢，向机场客服反馈</li>
+      </ul>
+      <p class="mt-2">如果以上方法都无法改善，说明当前机场可能不适合您的网络环境，建议更换机场。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 6 ? null : 6" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">杨帆云真的只要一元吗？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 6 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 6" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>"杨帆云"是一个品牌名称，并不代表价格仅为一元人民币。不过杨帆云确实以高性价比著称：</p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li>入门套餐通常低至 ¥5-10/月</li>
+        <li>提供 SS/SSR/V2Ray 多种协议</li>
+        <li>节点数量在同价位中较多</li>
+        <li>适合预算有限的轻量用户</li>
+      </ul>
+      <p class="mt-2">需要注意的是，低价套餐在速度和流媒体解锁方面可能有限制。如果追求更好的体验，建议选择中高端套餐或其他机场。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 7 ? null : 7" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">订阅链接过期了怎么办？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 7 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 7" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>订阅链接过期通常由以下原因导致：</p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><strong>套餐到期：</strong>登录机场官网续费即可</li>
+        <li><strong>订阅地址变更：</strong>机场更换了订阅地址，需要在用户中心获取新的链接</li>
+        <li><strong>账号被封：</strong>多设备登录或违反条款可能导致封号，联系客服解决</li>
+      </ul>
+      <p class="mt-2">拿到新订阅链接后，在客户端中更新即可恢复使用。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 8 ? null : 8" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">什么是 IEPL 专线？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 8 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 8" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>IEPL（International Ethernet Private Line）即国际以太网专线，是一种高质量的国际专线服务。</p>
+      <p class="mt-2"><strong>IEPL 的优势：</strong></p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li>低延迟：比普通中转线路延迟更低</li>
+        <li>高稳定：专线独享，不受国际带宽拥堵影响</li>
+        <li>低丢包：数据传输更可靠</li>
+        <li>晚高峰无感知：即使在晚高峰时段也能保持高速</li>
+      </ul>
+      <p class="mt-2">使用 IEPL 专线的机场价格通常较高（¥30+/月），但网络体验也更好，适合对网络质量有高要求的用户。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 9 ? null : 9" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">如何测试机场节点的速度？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 9 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 9" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>推荐使用以下方法全面测试机场节点：</p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li><strong>延迟测试：</strong>在客户端中逐个连接节点，查看延迟数值（ping）</li>
+        <li><strong>带宽测试：</strong>使用 speedtest.net 或 fast.com 测速</li>
+        <li><strong>流媒体测试：</strong>打开 YouTube 播放 4K 视频，观察缓冲速度和流畅度</li>
+        <li><strong>晚高峰测试：</strong>在 19:00-23:00 时段重复以上测试，观看是否降速</li>
+        <li><strong>长时稳定性：</strong>持续连接一个节点 30 分钟以上，观察是否断流</li>
+      </ul>
+      <p class="mt-2">综合以上测试结果，才能准确评估一个机场的真实表现。</p>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <button @click="activeFaq = activeFaq === 10 ? null : 10" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+      <span class="text-lg">机场会影响我的网络安全吗？</span>
+      <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 10 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+    <div x-show="activeFaq === 10" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+      <p>选择正规机场通常不会有大问题，但仍需注意以下安全建议：</p>
+      <ul class="list-disc pl-5 mt-2 space-y-1">
+        <li>选择知名且运营时间长的机场，避免使用不明来源的免费机场</li>
+        <li>确保机场支持并启用传输加密（TLS/XTLS）</li>
+        <li>处理敏感信息时，配合使用 HTTPS 加密网站</li>
+        <li>不要在多台设备上共享同一订阅链接（可能触发封号）</li>
+        <li>定期更新订阅链接和客户端版本</li>
+        <li>考虑搭配广告拦截和防追踪功能（如 AdGuard）</li>
+      </ul>
+      <p class="mt-2">通过合理的配置和使用习惯，可以最大程度保障网络安全。</p>
+    </div>
+  </div>
+</div>

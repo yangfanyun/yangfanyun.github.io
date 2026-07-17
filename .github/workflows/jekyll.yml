@@ -1,0 +1,92 @@
+     1|# =============================================
+     2|# 杨帆云 - GitHub Pages Deployment
+     3|# Build and deploy Jekyll site with Tailwind CSS
+     4|# =============================================
+     5|
+     6|name: Build and Deploy Jekyll Site
+     7|
+     8|on:
+     9|  push:
+    10|    branches:
+    11|      - main
+    12|      - master
+    13|    paths-ignore:
+    14|      - 'README.md'
+    15|      - 'LICENSE'
+    16|      - '.gitignore'
+    17|  pull_request:
+    18|    branches:
+    19|      - main
+    20|      - master
+    21|  # Allow manual trigger from Actions tab
+    22|  workflow_dispatch:
+    23|
+    24|# Sets permissions of the GITHUB_TOKEN to deploy to GitHub Pages
+    25|permissions:
+    26|  contents: read
+    27|  pages: write
+    28|  id-token: write
+    29|
+    30|# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+    31|# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+    32|concurrency:
+    33|  group: "pages"
+    34|  cancel-in-progress: false
+    35|
+    36|jobs:
+    37|  # Build job
+    38|  build:
+    39|    runs-on: ubuntu-latest
+    40|    steps:
+    41|      - name: Checkout repository
+    42|        uses: actions/checkout@v4
+    43|
+    44|      - name: Setup Ruby environment
+    45|        uses: ruby/setup-ruby@v1
+    46|        with:
+    47|          ruby-version: '3.3'
+    48|          bundler-cache: true
+    49|
+    50|      - name: Setup Node.js environment
+    51|        uses: actions/setup-node@v4
+    52|        with:
+    53|          node-version: '20'
+    54|          cache: 'npm'
+    55|          cache-dependency-path: package-lock.json
+    56|
+    57|      - name: Install Node.js dependencies
+    58|        run: |
+    59|          npm ci
+    60|
+    61|      - name: Build Tailwind CSS
+    62|        run: |
+    63|          npm run build:css
+    64|
+    65|      - name: Setup Pages configuration
+    66|        id: pages
+    67|        uses: actions/configure-pages@v5
+    68|
+    69|      - name: Build Jekyll site
+    70|        run: |
+    71|          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path || '' }}"
+    72|        env:
+    73|          JEKYLL_ENV: production
+    74|
+    75|      - name: Upload artifact for Pages
+    76|        uses: actions/upload-pages-artifact@v3
+    77|        with:
+    78|          path: ./_site/
+    79|
+    80|  # Deployment job
+    81|  deploy:
+    82|    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    83|    environment:
+    84|      name: github-pages
+    85|      url: ${{ steps.deployment.outputs.page_url }}
+    86|    runs-on: ubuntu-latest
+    87|    needs: build
+    88|    steps:
+    89|      - name: Deploy to GitHub Pages
+    90|        id: deployment
+    91|        uses: actions/deploy-pages@v4
+    92|

@@ -1,0 +1,175 @@
+---
+layout: default
+title: 404 - 页面未找到
+permalink: /404.html
+---
+
+<style>
+  .error-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float-error 8s ease-in-out infinite;
+  }
+
+  @keyframes float-error {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-30px) rotate(90deg);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-10px) rotate(180deg);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateY(-40px) rotate(270deg);
+      opacity: 0.7;
+    }
+  }
+
+  .error-particle:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    left: -100px;
+    background: radial-gradient(circle, rgba(51, 112, 255, 0.2) 0%, transparent 70%);
+    animation-delay: 0s;
+  }
+
+  .error-particle:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    right: -50px;
+    background: radial-gradient(circle, rgba(11, 201, 157, 0.15) 0%, transparent 70%);
+    animation-delay: -3s;
+  }
+
+  .error-particle:nth-child(3) {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 60%;
+    background: radial-gradient(circle, rgba(89, 148, 255, 0.1) 0%, transparent 70%);
+    animation-delay: -5s;
+  }
+
+  .error-particle:nth-child(4) {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 10%;
+    background: radial-gradient(circle, rgba(11, 201, 157, 0.1) 0%, transparent 70%);
+    animation-delay: -2s;
+  }
+
+  .error-404-text {
+    font-size: clamp(6rem, 20vw, 12rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, #3370ff 0%, #0bc99d 50%, #3370ff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 40px rgba(51, 112, 255, 0.3));
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .glitch-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glitch-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #3370ff 0%, #0bc99d 50%, #3370ff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease-in-out infinite;
+    opacity: 0.7;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+</style>
+
+<div class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+  <!-- Background particles -->
+  <div class="error-particle"></div>
+  <div class="error-particle"></div>
+  <div class="error-particle"></div>
+  <div class="error-particle"></div>
+
+  <!-- Grid pattern overlay -->
+  <div class="absolute inset-0 grid-pattern opacity-30"></div>
+
+  <div class="relative z-10 text-center px-4 sm:px-6 max-w-2xl mx-auto">
+    <!-- 404 Graphic -->
+    <div class="glitch-container mb-8">
+      <div class="error-404-text">404</div>
+    </div>
+
+    <!-- Airplane icon -->
+    <div class="mb-8">
+      <svg class="w-20 h-20 mx-auto text-primary-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M12 19l-9-4.5 3-3 6 3 6-3 3 3L12 19zm0-4.5L3 10l3-3 6 3 6-3 3 3-9 4.5z">
+        </path>
+      </svg>
+    </div>
+
+    <!-- Error message -->
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
+      页面未找到
+    </h1>
+
+    <p class="text-lg text-gray-400 mb-3">
+      你寻找的航线似乎不存在于我们的地图上
+    </p>
+
+    <p class="text-sm text-gray-500 mb-10">
+      页面可能已被移除、更名或暂时无法访问
+    </p>
+
+    <!-- Action buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="/" class="btn-primary text-base px-8 py-4 gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+        </svg>
+        返回首页
+      </a>
+
+      <a href="javascript:history.back()" class="btn-secondary text-base px-8 py-4 gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        返回上页
+      </a>
+    </div>
+
+    <!-- Additional help -->
+    <div class="mt-12 pt-8 border-t border-surface-border">
+      <p class="text-gray-500 text-sm">
+        需要帮助？请
+        <a href="mailto:support@1yuanjichang.com" class="text-primary-400 hover:text-primary-300 transition-colors">联系我们</a>
+      </p>
+    </div>
+  </div>
+</div>

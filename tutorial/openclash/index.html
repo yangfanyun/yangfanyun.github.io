@@ -1,0 +1,248 @@
+---
+title: OpenClash 教程 - OpenWrt 路由器全局代理配置指南
+layout: page
+permalink: /tutorial/openclash/
+description: OpenClash路由器插件完整配置教程，支持Clash/Meta/Sing-box多核心，实现路由器全局科学上网。涵盖安装、订阅配置、TUN模式和旁路由模式设置，家里所有设备自动代理。
+keywords: OpenClash教程,OpenWrt代理,路由器翻墙,OpenClash配置,路由器全局代理,旁路由设置,Clash路由器
+breadcrumb:
+  - name: 使用教程
+    url: /tutorial/
+  - name: OpenClash教程
+    url: /tutorial/openclash/
+---
+
+<div class="mb-8">
+  <p class="text-lg text-gray-600 dark:text-gray-300">
+    OpenClash 是 OpenWrt 路由器上最流行的代理客户端之一，基于 Clash 核心开发。本教程将带您从零开始在 OpenWrt 路由器上安装和配置 OpenClash，实现局域网全局代理。
+  </p>
+</div>
+
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-8">
+  <div class="p-6">
+    <div class="flex items-center mb-6">
+      <div class="w-12 h-12 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.858 15.355-5.858 21.213 0"/></svg>
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">OpenClash 安装配置教程</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">适用于 OpenWrt / LEDE / ImmortalWrt 等固件</p>
+      </div>
+    </div>
+
+    <div class="prose prose-gray dark:prose-invert max-w-none">
+      <h2>什么是 OpenClash？</h2>
+      <p>
+        OpenClash 是一个运行在 OpenWrt 平台上的 Clash 客户端，它利用 Clash 核心为路由器提供代理功能。与在 PC 或手机上安装客户端不同，在路由器上部署 OpenClash 可以让 <strong>整个局域网</strong> 中的所有设备（电脑、手机、平板、智能电视、游戏机等）自动获得代理能力，无需每台设备单独配置。
+      </p>
+      <p><strong>OpenClash 的主要特点：</strong></p>
+      <ul>
+        <li><strong>全局代理</strong> — 局域网所有设备自动生效，零配置</li>
+        <li><strong>规则分流</strong> — 国内流量直连，国外流量代理，智能高效</li>
+        <li><strong>多核心支持</strong> — 支持 Clash、Clash Meta、Clash Premium 等多个核心版本</li>
+        <li><strong>多种运行模式</strong> — TUN 模式、Redir 模式、Fake-IP 模式满足不同场景</li>
+        <li><strong>可视化面板</strong> — 通过 LuCI 界面管理，操作直观</li>
+        <li><strong>订阅支持</strong> — 支持 Clash 订阅链接，自动更新节点</li>
+      </ul>
+
+      <h2>准备工作</h2>
+      <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 not-prose mb-6">
+        <h4 class="font-bold text-amber-700 dark:text-amber-300 mb-2 flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+          前置条件
+        </h4>
+        <ul class="text-sm text-amber-800 dark:text-amber-200 space-y-1">
+          <li>一台已刷好 OpenWrt 固件的路由器（推荐 x86、R2S/R4S、树莓派等性能较好的设备）</li>
+          <li>路由器需要有足够的存储空间（建议 256MB+），或已挂载外部存储</li>
+          <li>确保路由器可以正常访问互联网</li>
+          <li>建议先备份当前路由器配置</li>
+        </ul>
+      </div>
+
+      <h2>Step 1：安装 OpenClash</h2>
+      <p>OpenClash 可以通过 LuCI 界面在线安装，或手动上传 IPK 安装包安装。</p>
+
+      <h3>方法一：在线安装（推荐）</h3>
+      <ol>
+        <li>登录 OpenWrt 管理后台（默认 192.168.1.1）</li>
+        <li>进入 <strong>系统 → 软件包</strong></li>
+        <li>点击 <strong>更新列表</strong> 刷新软件源</li>
+        <li>在过滤器输入 <code>luci-app-openclash</code>，点击查找</li>
+        <li>点击 <strong>安装</strong> 按钮等待安装完成</li>
+        <li>安装完成后，刷新页面左侧导航栏即可看到 <strong>服务 → OpenClash</strong></li>
+      </ol>
+
+      <h3>方法二：手动安装 IPK</h3>
+      <ol>
+        <li>前往 <a href="https://github.com/vernesong/OpenClash/releases" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">OpenClash Release 页面</a> 下载对应路由器架构的 IPK 包</li>
+        <li>通过 SCP 或 WinSCP 将 IPK 包上传到路由器的 <code>/tmp</code> 目录</li>
+        <li>SSH 登录路由器，执行安装命令：<code>opkg install /tmp/luci-app-openclash_*.ipk</code></li>
+        <li>安装完成后刷新 LuCI 页面即可</li>
+      </ol>
+
+      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 not-prose my-6">
+        <h4 class="font-bold text-blue-700 dark:text-blue-300 mb-1">💡 提示</h4>
+        <p class="text-sm text-blue-700 dark:text-blue-200">如果在线安装失败，通常是软件源配置问题。可以尝试更换软件源镜像，或使用手动安装方式。</p>
+      </div>
+
+      <h2>Step 2：基本设置</h2>
+      <p>安装完成后，进入 <strong>服务 → OpenClash</strong> 进行基本配置。</p>
+      <ol>
+        <li><strong>切换语言</strong>：在 OpenClash 设置页面右上角选择简体中文</li>
+        <li><strong>核心选择</strong>：在 <strong>全局设置 → 版本更新</strong> 中下载 Clash Meta 核心（推荐）或 Clash Premium 核心</li>
+        <li><strong>启用开关</strong>：在 <strong>全局设置</strong> 中勾选「启用 OpenClash」</li>
+        <li><strong>端口设置</strong>：默认 HTTP 代理端口 7890，SOCKS5 端口 7891，一般无需修改</li>
+        <li><strong>面板设置</strong>：开启 Dashboard（Yacd 或 Razord），方便在浏览器中切换节点</li>
+      </ol>
+
+      <h2>Step 3：订阅导入</h2>
+      <p>将机场提供的 Clash 订阅链接导入 OpenClash：</p>
+      <ol>
+        <li>进入 <strong>配置管理 → 订阅管理</strong></li>
+        <li>在 <strong>订阅 URL</strong> 输入框中粘贴机场提供的 Clash 订阅链接</li>
+        <li>设置 <strong>更新间隔</strong>（建议 24 小时，单位：小时）</li>
+        <li>点击 <strong>保存配置</strong></li>
+        <li>点击 <strong>更新订阅</strong> 按钮拉取节点配置</li>
+        <li>更新成功后，进入 <strong>运行状态</strong> 查看节点列表是否正常显示</li>
+      </ol>
+      <p>如果机场只提供 SS/SSR/V2Ray 链接而没有 Clash 订阅链接，请先使用 <a href="{{ '/tutorial/subscription/' | relative_url }}" class="text-blue-600 dark:text-blue-400 hover:underline">订阅转换服务</a> 转换为 Clash 格式。</p>
+
+      <h2>Step 4：运行模式选择</h2>
+      <p>OpenClash 提供三种运行模式，根据您的需求选择：</p>
+
+      <div class="grid md:grid-cols-3 gap-4 not-prose my-6">
+        <div class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+          <h4 class="font-bold text-purple-700 dark:text-purple-300 mb-1">Redir 模式</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">使用 iptables 透明代理，只代理 TCP 流量，性能最优。适合不需要 UDP 代理的场景。</p>
+        </div>
+        <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <h4 class="font-bold text-blue-700 dark:text-blue-300 mb-1">TUN 模式</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">基于 TUN 虚拟网卡，支持 TCP + UDP 全流量代理。适合游戏、视频通话等需要 UDP 的场景。</p>
+        </div>
+        <div class="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+          <h4 class="font-bold text-green-700 dark:text-green-300 mb-1">Fake-IP 模式</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300">使用 Fake DNS，劫持 DNS 请求并返回虚拟 IP，减少 DNS 污染影响。兼容性较好，推荐新手使用。</p>
+        </div>
+      </div>
+
+      <p><strong>模式选择建议：</strong></p>
+      <ul>
+        <li><strong>新手推荐：</strong>Fake-IP 混合模式（兼容性最好，多数场景表现良好）</li>
+        <li><strong>性能优先：</strong>Redir 模式（资源占用低，适合低配路由器）</li>
+        <li><strong>功能全面：</strong>TUN 模式（支持 UDP，适合游戏玩家）</li>
+      </ul>
+
+      <p>在 <strong>全局设置 → 模式选择</strong> 中更改运行模式，保存并重启 OpenClash 生效。</p>
+
+      <h2>Step 5：规则优化</h2>
+      <p>OpenClash 默认内置了规则集，但您可以根据需求进行优化：</p>
+
+      <h3>使用第三方规则集</h3>
+      <p>在 <strong>配置管理 → 规则管理</strong> 中，可以替换默认规则为社区维护的优质规则：</p>
+      <ul>
+        <li><strong>ACL4SSR</strong> — 国内最流行的规则集，覆盖面广，更新及时</li>
+        <li><strong>Loyalsoldier</strong> — 精简高效的规则集，适合低配设备</li>
+        <li><strong>Hackl0us</strong> — GeoIP-based 规则，轻量快速</li>
+      </ul>
+
+      <h3>自定义规则</h3>
+      <p>您也可以手动添加自定义规则，在 <strong>配置管理 → 配置文件管理</strong> 中编辑配置文件，在 <code>rules:</code> 段添加：</p>
+      <pre class="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg text-sm overflow-x-auto"><code>rules:
+  # 自定义直连规则
+  - DOMAIN-SUFFIX,example.com,DIRECT
+  # 自定义代理规则
+  - DOMAIN-SUFFIX,netflix.com,Proxy
+  # IP 段规则
+  - IP-CIDR,192.168.0.0/16,DIRECT</code></pre>
+
+      <h3>分流策略优化</h3>
+      <p>在 <strong>策略组</strong> 设置中，可以配置：</p>
+      <ul>
+        <li><strong>自动选择</strong> — 根据延迟或丢包率自动切换最佳节点</li>
+        <li><strong>故障转移</strong> — 当前节点不可用自动切换到备用节点</li>
+        <li><strong>负载均衡</strong> — 将流量分配到多个节点，提高整体速度</li>
+      </ul>
+
+      <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 not-prose my-6">
+        <h4 class="font-bold text-amber-700 dark:text-amber-300 mb-1">⚠️ 注意事项</h4>
+        <ul class="text-sm text-amber-800 dark:text-amber-200 space-y-1">
+          <li>修改配置后记得点击「保存配置」并重启 OpenClash 使更改生效</li>
+          <li>规则过多会消耗路由器内存，建议选择适合设备性能的规则集</li>
+          <li>不要在配置文件中混用不同格式的规则，保持统一</li>
+        </ul>
+      </div>
+
+      <h2>常见问题 (FAQ)</h2>
+
+      <div class="space-y-4 not-prose" x-data="{ activeFaq: null }">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <button @click="activeFaq = activeFaq === 1 ? null : 1" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <span class="text-lg text-gray-900 dark:text-white">安装后 LuCI 页面没有显示 OpenClash？</span>
+            <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div x-show="activeFaq === 1" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+            <p>尝试清除浏览器缓存或强制刷新（Ctrl+F5）。如果仍然不显示，SSH 登录路由器执行 <code>/etc/init.d/openclash restart</code>，然后刷新页面。如果问题持续，重新安装 <code>luci-compat</code> 和 <code>luci-lib-ipkg</code> 依赖包。</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <button @click="activeFaq = activeFaq === 2 ? null : 2" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <span class="text-lg text-gray-900 dark:text-white">更新订阅后节点列表为空？</span>
+            <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div x-show="activeFaq === 2" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+            <p>检查订阅链接是否有效，尝试在浏览器中直接打开订阅链接看是否能正常下载配置文件。如果链接正常，检查 OpenClash 的 <strong>版本更新 → 核心版本</strong> 是否已下载 Clash 核心。如果核心缺失，订阅无法解析。</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <button @click="activeFaq = activeFaq === 3 ? null : 3" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <span class="text-lg text-gray-900 dark:text-white">开启 OpenClash 后无法访问路由器管理后台？</span>
+            <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div x-show="activeFaq === 3" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+            <p>这是因为 OpenClash 的规则将路由器 IP 也代理了。解决方法：在 <strong>全局设置 → 访问控制</strong> 中，将路由器管理 IP 添加到「绕过代理」列表。或者自定义规则添加 <code>IP-CIDR,192.168.1.0/24,DIRECT</code> 放行局域网流量。</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <button @click="activeFaq = activeFaq === 4 ? null : 4" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <span class="text-lg text-gray-900 dark:text-white">OpenClash 占用内存过高怎么办？</span>
+            <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div x-show="activeFaq === 4" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+            <p>可以尝试以下优化：1）更换为轻量级规则集（如 Loyalsoldier 规则）；2）在全局设置中关闭不必要的日志记录；3）使用 Redir 模式替代 TUN 模式（TUN 模式更占内存）；4）限制节点数量，只保留常用的节点；5）升级路由器固件或增加交换空间。</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <button @click="activeFaq = activeFaq === 5 ? null : 5" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <span class="text-lg text-gray-900 dark:text-white">如何更新 OpenClash 版本？</span>
+            <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div x-show="activeFaq === 5" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+            <p>在 <strong>全局设置 → 版本更新</strong> 中，可以分别更新 OpenClash 管理面板和 Clash 核心。建议开启「自动更新核心」功能，确保使用最新的 Clash 版本。管理面板更新需要手动点击「检查更新」按钮。</p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <button @click="activeFaq = activeFaq === 6 ? null : 6" class="flex items-center justify-between w-full p-4 text-left font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+            <span class="text-lg text-gray-900 dark:text-white">某些网站或应用无法正常访问？</span>
+            <svg class="w-5 h-5 text-gray-400 transition-transform flex-shrink-0" :class="{ 'rotate-180': activeFaq === 6 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div x-show="activeFaq === 6" x-collapse class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-300">
+            <p>这通常是规则匹配问题。可以尝试：1）在 Dashboard 中切换到「全局代理」模式看是否能访问；2）检查是否被规则误判，在自定义规则中添加正确的规则；3）开启 <strong>实验功能 → 绕过中国大陆 IP</strong>；4）切换运行模式（如从 Fake-IP 切换到 TUN 模式）。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 not-prose mt-8">
+        <h4 class="font-bold text-gray-900 dark:text-white mb-2">📚 相关教程</h4>
+        <ul class="space-y-1 text-sm">
+          <li><a href="{{ '/tutorial/subscription/' | relative_url }}" class="text-blue-600 dark:text-blue-400 hover:underline">订阅教程 — 机场订阅链接使用指南</a></li>
+          <li><a href="{{ '/tutorial/clash/' | relative_url }}" class="text-blue-600 dark:text-blue-400 hover:underline">Clash 客户端配置教程</a></li>
+          <li><a href="{{ '/tutorial/singbox/' | relative_url }}" class="text-blue-600 dark:text-blue-400 hover:underline">Sing-box 配置教程</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

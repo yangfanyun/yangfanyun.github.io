@@ -1,0 +1,428 @@
+---
+title: Clash 教程 - 从下载安装到配置使用的完整指南
+layout: page
+permalink: /tutorial/clash/
+description: Clash客户端完整使用教程，从下载安装、订阅导入、节点切换、规则配置到TUN模式开启，一步步教你把Clash用起来，Windows和macOS都有详细步骤。
+keywords: Clash教程,Clash配置,Clash下载安装,Clash订阅导入,Clash规则配置,Clash TUN模式,Clash Verge教程
+breadcrumb:
+  - name: 使用教程
+    url: /tutorial/
+  - name: Clash教程
+    url: /tutorial/clash/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Clash 教程：从下载到配置完整指南",
+  "description": "从零开始学习 Clash 代理客户端，涵盖 Clash Meta、Clash Verge、Clash for Windows 的下载安装、订阅导入、节点选择、TUN 模式等完整配置流程。",
+  "author": {
+    "@type": "Organization",
+    "name": "杨帆云"
+  },
+  "datePublished": "2026-01-15",
+  "dateModified": "2026-07-10",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://yangfanyun.github.io/tutorial/clash/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "杨帆云"
+  }
+}
+</script>
+
+<!-- 简介 -->
+<div class="not-prose mb-10">
+  <div class="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/30 border border-orange-200 dark:border-orange-800/50 rounded-2xl p-6 sm:p-8">
+    <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+      <strong>Clash</strong> 是目前最流行的代理客户端之一，支持 Windows、macOS、Linux 等多个平台，采用 Go 语言开发，性能优异、资源占用低。无论是机场订阅用户还是自建代理用户，Clash 都是不可或缺的工具。
+    </p>
+    <p class="text-base text-gray-600 dark:text-gray-300 mt-4 leading-relaxed">
+      本教程将从零开始，手把手教你完成 Clash 的下载安装、订阅导入、节点选择、代理开启以及 TUN 模式配置等全流程操作。无论你是刚接触代理的新手，还是希望深入了解 Clash 进阶功能的老用户，都能在本文中找到有用的信息。
+    </p>
+    <div class="flex flex-wrap gap-3 mt-5">
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        适用平台：Windows / macOS / Linux
+      </span>
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        开源免费
+      </span>
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        支持多协议
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- 目录 -->
+<div class="not-prose mb-10">
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-3">📋 内容目录</h2>
+    <ul class="space-y-1.5">
+      <li><a href="#step-1" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold">1</span> Clash 下载与安装</a></li>
+      <li><a href="#step-2" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold">2</span> 获取订阅链接</a></li>
+      <li><a href="#step-3" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold">3</span> 导入订阅</a></li>
+      <li><a href="#step-4" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold">4</span> 选择节点</a></li>
+      <li><a href="#step-5" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold">5</span> 开启代理</a></li>
+      <li><a href="#step-6" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold">6</span> TUN 模式开启（进阶）</a></li>
+      <li><a href="#faq" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold">❓</span> 常见问题</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Step 1: 下载安装 -->
+<div id="step-1" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-orange-500 text-white text-lg font-bold shadow-md">1</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Clash 下载与安装</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+    <div class="p-6">
+      <p class="text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
+        Clash 生态中有多个版本可供选择。根据你的使用习惯和平台，我们推荐以下三个主流版本：
+      </p>
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Clash Meta -->
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 hover:shadow-md hover:border-orange-300 dark:hover:border-orange-700 transition-all bg-orange-50/30 dark:bg-orange-950/20">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 rounded-lg flex items-center justify-center text-sm font-bold">CM</div>
+            <h3 class="font-bold text-gray-900 dark:text-white">Clash Meta</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Clash 的进阶分支，支持 TUN 模式、规则集、DNS 劫持等高级功能，性能优异。</p>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">Windows</span>
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">macOS</span>
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">Linux</span>
+          </div>
+          <a href="https://github.com/MetaCubeX/Clash.Meta/releases" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-orange-600 dark:text-orange-400 hover:underline font-medium">
+            下载 Clash Meta →
+          </a>
+        </div>
+        <!-- Clash Verge -->
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 hover:shadow-md hover:border-purple-300 dark:hover:border-purple-700 transition-all bg-purple-50/30 dark:bg-purple-950/20">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 rounded-lg flex items-center justify-center text-sm font-bold">CV</div>
+            <h3 class="font-bold text-gray-900 dark:text-white">Clash Verge</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">基于 Clash Meta 内核的现代化 GUI 客户端，界面美观操作简单，适合新手。</p>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">Windows</span>
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">macOS</span>
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">Linux</span>
+          </div>
+          <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-purple-600 dark:text-purple-400 hover:underline font-medium">
+            下载 Clash Verge →
+          </a>
+        </div>
+        <!-- Clash for Windows -->
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 hover:shadow-md hover:border-green-300 dark:hover:border-green-700 transition-all bg-green-50/30 dark:bg-green-950/20">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-8 h-8 bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 rounded-lg flex items-center justify-center text-sm font-bold">CFW</div>
+            <h3 class="font-bold text-gray-900 dark:text-white">Clash for Windows</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">经典 Windows 版 Clash 客户端，功能完善稳定，中文界面，受众最广。</p>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">Windows</span>
+            <span class="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded">macOS</span>
+          </div>
+          <a href="https://github.com/Fndroid/clash_for_windows_pkg/releases" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-green-600 dark:text-green-400 hover:underline font-medium">
+            下载 Clash for Windows →
+          </a>
+        </div>
+      </div>
+      <!-- 安装提示 -->
+      <div class="mt-5 p-4 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/50 rounded-lg">
+        <div class="flex gap-3">
+          <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <p class="text-sm font-medium text-amber-800 dark:text-amber-200">💡 安装提示</p>
+            <p class="text-sm text-amber-700 dark:text-amber-300 mt-1">Windows 用户下载 .exe 或 .msi 安装包，macOS 用户下载 .dmg 文件，Linux 用户下载对应包管理器的格式。建议始终从官方 GitHub Releases 下载以保证安全。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 2: 获取订阅链接 -->
+<div id="step-2" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-orange-500 text-white text-lg font-bold shadow-md">2</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">获取订阅链接</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      订阅链接是机场（代理服务商）提供给用户的配置文件地址，通常以 <code class="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-sm">https://</code> 开头。登录你购买的机场网站，在用户中心或仪表盘页面中，找到"一键订阅"或"复制订阅链接"按钮。
+    </p>
+    <div class="p-4 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 rounded-lg">
+      <div class="flex gap-3">
+        <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <div>
+          <p class="text-sm font-medium text-blue-800 dark:text-blue-200">🔒 安全提醒</p>
+          <p class="text-sm text-blue-700 dark:text-blue-300 mt-1">订阅链接包含你的账户信息，请勿分享给他人。如不慎泄露，可在机场后台重置订阅链接。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 3: 导入订阅 -->
+<div id="step-3" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-orange-500 text-white text-lg font-bold shadow-md">3</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">导入订阅</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      下面以 <strong>Clash Verge</strong> 为例演示如何导入订阅：
+    </p>
+    <ol class="space-y-3 mb-5">
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold flex-shrink-0 mt-0.5">a</span>
+        <span class="text-gray-700 dark:text-gray-200">打开 Clash Verge，点击左侧菜单的 <strong>Profiles</strong>（配置）</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold flex-shrink-0 mt-0.5">b</span>
+        <span class="text-gray-700 dark:text-gray-200">点击右上角的 <strong>Import</strong>（导入）按钮</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold flex-shrink-0 mt-0.5">c</span>
+        <span class="text-gray-700 dark:text-gray-200">在弹出的输入框中粘贴你之前复制的 <strong>订阅链接</strong></span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 text-xs font-bold flex-shrink-0 mt-0.5">d</span>
+        <span class="text-gray-700 dark:text-gray-200">点击 <strong>Save</strong>，Clash 将自动下载并解析订阅配置</span>
+      </li>
+    </ol>
+    <div class="p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800/50 rounded-lg">
+      <div class="flex gap-3">
+        <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        <div>
+          <p class="text-sm font-medium text-green-800 dark:text-green-200">💡 提示</p>
+          <p class="text-sm text-green-700 dark:text-green-300 mt-1">在 Clash for Windows 中，操作路径类似：Profiles → 输入框粘贴链接 → Download。如果订阅需要转换，可以使用 <a href="https://sub.v1.mk/" target="_blank" rel="noopener noreferrer" class="underline">subconverter</a> 等在线转换工具。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 4: 选择节点 -->
+<div id="step-4" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-orange-500 text-white text-lg font-bold shadow-md">4</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">选择节点</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      订阅导入后，在 Clash 主界面的 <strong>Proxies</strong>（代理）选项卡中可以看到所有可用节点。节点通常按地区或类型分组（如 香港、新加坡、日本、美国、台湾等）。
+    </p>
+    <ul class="space-y-2 mb-4">
+      <li class="flex items-start gap-2 text-gray-700 dark:text-gray-200">
+        <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span><strong>自动选择（Auto/URL Test）</strong>：Clash 会自动测试各节点延迟并选择最快的节点</span>
+      </li>
+      <li class="flex items-start gap-2 text-gray-700 dark:text-gray-200">
+        <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span><strong>手动选择</strong>：点击任意节点即可手动切换到该节点</span>
+      </li>
+      <li class="flex items-start gap-2 text-gray-700 dark:text-gray-200">
+        <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span><strong>延迟测试</strong>：右键点击节点或分组，选择"延迟测试"查看各节点的实时响应时间</span>
+      </li>
+    </ul>
+    <div class="p-4 bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800/50 rounded-lg">
+      <p class="text-sm text-indigo-700 dark:text-indigo-300">📌 一般建议选择延迟低、丢包率低的节点。观看流媒体时选择对应地区的节点可获得更好的解锁效果。例如看 Netflix 日区选日本节点，看 Disney+ 选美国节点或新加坡节点。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Step 5: 开启代理 -->
+<div id="step-5" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-orange-500 text-white text-lg font-bold shadow-md">5</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">开启代理</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      节点选择完成后，需要开启系统代理才能正常使用。Clash Verge 的顶栏有一个开关按钮，点击即可开启代理。你也可以在 <strong>Settings</strong> 中配置代理端口（默认为 7890）和系统代理设置。
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-4">
+      <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">默认代理设置</h4>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+          <li>HTTP 端口：<code class="px-1 bg-gray-200 dark:bg-gray-700 rounded">7890</code></li>
+          <li>SOCKS5 端口：<code class="px-1 bg-gray-200 dark:bg-gray-700 rounded">7891</code></li>
+          <li>混合端口：<code class="px-1 bg-gray-200 dark:bg-gray-700 rounded">7890</code></li>
+          <li>允许局域网连接：可选</li>
+        </ul>
+      </div>
+      <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">系统代理模式</h4>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+          <li><strong>Rule（规则）</strong>：根据规则分流，推荐</li>
+          <li><strong>Global（全局）</strong>：所有流量走代理</li>
+          <li><strong>Direct（直连）</strong>：所有流量直连</li>
+        </ul>
+      </div>
+    </div>
+    <div class="p-3 bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-800/50 rounded-lg">
+      <p class="text-sm text-yellow-700 dark:text-yellow-300">⚠️ 如果开启代理后无法上网，请尝试切换代理模式（Rule → Global → Direct），或者检查端口是否被占用。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Step 6: TUN 模式 -->
+<div id="step-6" class="not-prose mb-10 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-orange-500 text-white text-lg font-bold shadow-md">6</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">TUN 模式开启（进阶）</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+    <div class="p-6">
+      <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+        <strong>TUN 模式</strong> 是 Clash 最强大的功能之一，它可以虚拟一张网卡，将所有系统流量（包括游戏、UWP 应用、命令行工具等）强制通过 Clash 代理，实现真正的全局代理。
+      </p>
+      <h4 class="font-bold text-gray-900 dark:text-white mb-2">开启步骤：</h4>
+      <ol class="space-y-2 mb-4">
+        <li class="flex items-start gap-2 text-gray-700 dark:text-gray-200">
+          <span class="text-orange-500 font-bold mr-1">1.</span>
+          进入 <strong>Settings</strong> → <strong>TUN Mode</strong>
+        </li>
+        <li class="flex items-start gap-2 text-gray-700 dark:text-gray-200">
+          <span class="text-orange-500 font-bold mr-1">2.</span>
+          将 TUN Mode 开关切换为 <strong>开启</strong> 状态
+        </li>
+        <li class="flex items-start gap-2 text-gray-700 dark:text-gray-200">
+          <span class="text-orange-500 font-bold mr-1">3.</span>
+          如果提示安装虚拟网卡驱动，点击 <strong>安装</strong> 并按照系统提示完成安装
+        </li>
+        <li class="flex items-start gap-2 text-gray-700 dark:text-gray-200">
+          <span class="text-orange-500 font-bold mr-1">4.</span>
+          重启 Clash 使 TUN 模式生效
+        </li>
+      </ol>
+      <div class="p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800/50 rounded-lg">
+        <div class="flex gap-3">
+          <svg class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+          <div>
+            <p class="text-sm font-medium text-red-800 dark:text-red-200">⚠️ 注意事项</p>
+            <p class="text-sm text-red-700 dark:text-red-300 mt-1">TUN 模式会接管所有系统流量，开启后部分网络工具（如抓包工具、VPN 客户端）可能无法正常工作。如遇问题可暂时关闭 TUN 模式或切换到规则模式。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="not-prose my-10 border-t border-gray-200 dark:border-gray-700">
+
+<!-- FAQ Accordion -->
+<div id="faq" class="not-prose mb-8 scroll-mt-24" x-data="{ active: null }">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">❓ Clash 常见问题</h2>
+  <div class="space-y-3">
+    <!-- FAQ 1 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 1 }">
+      <button @click="active = active === 1 ? null : 1" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Clash 和 Clash Meta 有什么区别？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 1" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>Clash Meta（现更名为 <strong>Clash.Meta</strong>）是原版 Clash 的一个高性能分支，增加了许多新特性：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li>支持 TUN 模式（虚拟网卡，全局代理）</li>
+            <li>支持规则集（rule-set），可引用外部规则文件</li>
+            <li>支持 DNS 劫持和防 DNS 泄漏</li>
+            <li>更好的内存管理和性能优化</li>
+            <li>支持 mux、uTLS 等协议特性</li>
+          </ul>
+          <p class="mt-2">目前大多数新项目（如 Clash Verge、Clash Nyanpasu）都已基于 Clash Meta 内核，建议新用户直接使用 Clash Meta 或基于其内核的 GUI 客户端。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 2 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 2 }">
+      <button @click="active = active === 2 ? null : 2" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">为什么导入订阅后没有节点显示？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 2" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>可能的原因和解决方法：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>订阅链接已过期或失效</strong>：登录机场后台重新获取并导入</li>
+            <li><strong>网络问题导致下载失败</strong>：检查网络连接，尝试使用代理或切换网络环境后重新导入</li>
+            <li><strong>订阅需要转换</strong>：某些机场只提供 SS/SSR 格式，需要使用订阅转换工具转换为 Clash 格式</li>
+            <li><strong>订阅格式不兼容</strong>：确认使用的是 Clash 专用订阅链接（通常是 YAML 格式）</li>
+            <li><strong>软件版本过低</strong>：更新 Clash 到最新版本</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 3 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 3 }">
+      <button @click="active = active === 3 ? null : 3" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">如何更新 Clash 订阅？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 3" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>更新订阅的方法：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>手动更新</strong>：在 Profiles 页面点击订阅右侧的刷新/更新按钮</li>
+            <li><strong>自动更新</strong>：在 Settings 中设置订阅自动更新间隔（推荐每 24 小时更新一次）</li>
+            <li><strong>重启时更新</strong>：部分客户端支持启动时自动更新订阅</li>
+          </ul>
+          <p class="mt-2">建议开启自动更新功能，这样可以始终使用最新节点。如果你的机场节点经常变动，可以将更新间隔缩短到 12 小时。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 4 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 4 }">
+      <button @click="active = active === 4 ? null : 4" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Clash 如何配置规则（分流）？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 4" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>Clash 的规则分流是其核心功能，可以通过编辑配置文件来实现精细化的流量管理：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>规则文件位置</strong>：Profiles → 右键编辑 / Config 文件夹中的 config.yaml</li>
+            <li><strong>规则语法</strong>：<code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">规则类型, 匹配条件, 策略</code>（如 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">DOMAIN-SUFFIX, google.com, Proxy</code>）</li>
+            <li><strong>常用规则类型</strong>：DOMAIN（域名）、DOMAIN-SUFFIX（域名后缀）、DOMAIN-KEYWORD（域名关键词）、GEOIP（地理位置）、IP-CIDR（IP 段）</li>
+            <li><strong>策略组</strong>：Proxy（代理）、Direct（直连）、Reject（拒绝）</li>
+            <li><strong>在线规则集</strong>：可使用 rule-provider 引用 GitHub 上的规则集，如 Loyalsoldier/clash-rules</li>
+          </ul>
+          <p class="mt-2">新手建议直接使用机场提供的默认规则，或者使用经过优化的规则集（如 ACL4SSR），无需手动编写规则。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 5 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 5 }">
+      <button @click="active = active === 5 ? null : 5" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Clash 无法启动或闪退怎么办？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 5" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>Clash 无法启动或闪退的常见解决方法：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>检查配置文件</strong>：配置文件中可能存在语法错误，使用 YAML 验证工具检查</li>
+            <li><strong>端口冲突</strong>：7890 等端口被其他程序占用，在 Settings 中修改端口号</li>
+            <li><strong>权限不足</strong>：尝试以管理员身份运行（Windows）</li>
+            <li><strong>杀毒软件拦截</strong>：将 Clash 添加到杀毒软件白名单</li>
+            <li><strong>内核版本不兼容</strong>：更新或降级 Clash 内核版本</li>
+            <li><strong>重装解决 99% 问题</strong>：卸载后删除残留配置文件夹，重新安装最新版本</li>
+          </ul>
+          <p class="mt-2">如果以上方法都无法解决，可以查看 Clash 的日志文件（通常位于配置目录下的 logs 文件夹）获取详细的错误信息，或在 GitHub Issues 中搜索类似问题。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

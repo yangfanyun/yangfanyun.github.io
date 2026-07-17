@@ -1,0 +1,395 @@
+---
+title: Shadowrocket 小火箭教程 - iOS/iPadOS 配置使用全攻略
+layout: page
+permalink: /tutorial/shadowrocket/
+description: Shadowrocket（小火箭）iOS代理客户端详细教程，涵盖下载购买、订阅链接导入、节点选择、规则配置和按需连接设置，iPhone和iPad用户看这一篇就够了。
+keywords: Shadowrocket教程,小火箭配置,iOS代理,Shadowrocket下载,小火箭规则,苹果代理客户端,iPhone翻墙
+breadcrumb:
+  - name: 使用教程
+    url: /tutorial/
+  - name: Shadowrocket教程
+    url: /tutorial/shadowrocket/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Shadowrocket（小火箭）配置教程",
+  "description": "iOS 平台最受欢迎的代理客户端 Shadowrocket（小火箭）完整使用指南，包含购买安装、订阅导入、节点测速、规则配置等全流程操作。",
+  "author": {
+    "@type": "Organization",
+    "name": "杨帆云"
+  },
+  "datePublished": "2026-01-20",
+  "dateModified": "2026-07-10",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://yangfanyun.github.io/tutorial/shadowrocket/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "杨帆云"
+  }
+}
+</script>
+
+<!-- 简介 -->
+<div class="not-prose mb-10">
+  <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border border-blue-200 dark:border-blue-800/50 rounded-2xl p-6 sm:p-8">
+    <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+      <strong>Shadowrocket</strong>（俗称"小火箭"）是 iOS 平台上最受欢迎的代理客户端工具，支持 Shadowsocks、SSR、V2Ray、Trojan、VLESS 等多种代理协议。它界面简洁、功能强大，是 iPhone 和 iPad 用户实现网络代理的首选工具。
+    </p>
+    <p class="text-base text-gray-600 dark:text-gray-300 mt-4 leading-relaxed">
+      本教程将从购买安装开始，一步步带你完成 Shadowrocket 的完整配置流程。无论你是第一次使用 iOS 代理的新用户，还是希望深入了解 Shadowrocket 进阶玩法（如规则编辑、按需连接、快捷指令等）的老用户，本教程都值得收藏。
+    </p>
+    <div class="flex flex-wrap gap-3 mt-5">
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        适用平台：iOS / iPadOS
+      </span>
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        付费软件 $2.99
+      </span>
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        稳定可靠
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- 目录 -->
+<div class="not-prose mb-10">
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-3">📋 内容目录</h2>
+    <ul class="space-y-1.5">
+      <li><a href="#step-1" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold">1</span> 购买并安装 Shadowrocket</a></li>
+      <li><a href="#step-2" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold">2</span> 导入订阅链接</a></li>
+      <li><a href="#step-3" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold">3</span> 节点选择与测速</a></li>
+      <li><a href="#step-4" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold">4</span> 开启代理</a></li>
+      <li><a href="#step-5" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold">5</span> 规则与分组设置</a></li>
+      <li><a href="#faq" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold">❓</span> 常见问题</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Step 1: 购买安装 -->
+<div id="step-1" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-500 text-white text-lg font-bold shadow-md">1</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">购买并安装 Shadowrocket</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+    <div class="p-6">
+      <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+        Shadowrocket 是一款付费软件，售价 <strong>$2.99</strong>（约人民币 18-22 元），需使用美区或其他支持 Shadowrocket 的 Apple ID 购买。
+      </p>
+      <div class="grid md:grid-cols-2 gap-4 mb-5">
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-blue-50/30 dark:bg-blue-950/20">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            方法一：美区 Apple ID
+          </h4>
+          <ol class="text-sm text-gray-600 dark:text-gray-400 space-y-1.5 ml-5 list-decimal">
+            <li>注册一个美区 Apple ID（或购买现成的）</li>
+            <li>在 App Store 中登录美区账号</li>
+            <li>搜索 "Shadowrocket" 并购买下载</li>
+            <li>下载后切换回国区账号也可正常使用</li>
+          </ol>
+        </div>
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-green-50/30 dark:bg-green-950/20">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/></svg>
+            方法二：共享/兑换码
+          </h4>
+          <ol class="text-sm text-gray-600 dark:text-gray-400 space-y-1.5 ml-5 list-decimal">
+            <li>通过某些渠道获取共享账号或兑换码</li>
+            <li>在 App Store 中登录兑换</li>
+            <li>⚠️ 注意共享账号存在安全隐患</li>
+            <li>建议自己购买，长期使用更安心</li>
+          </ol>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 p-4 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 rounded-lg">
+        <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <p class="text-sm text-blue-700 dark:text-blue-300">📌 Shadowrocket 官方 App Store 链接：<a href="https://apps.apple.com/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer" class="underline font-medium">apps.apple.com/app/shadowrocket/id932747118</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 2: 导入订阅 -->
+<div id="step-2" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-500 text-white text-lg font-bold shadow-md">2</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">导入订阅链接</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      安装完成后，打开 Shadowrocket，按照以下步骤导入你的机场订阅：
+    </p>
+    <ol class="space-y-3 mb-5">
+      <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold flex-shrink-0">1</span>
+        <div>
+          <p class="text-sm font-medium text-gray-900 dark:text-white">打开 Shadowrocket，点击底部导航栏的 <strong>配置</strong> 选项卡</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">启动后主界面底部有"首页"、"配置"、"数据"、"设置"四个标签页</p>
+        </div>
+      </li>
+      <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold flex-shrink-0">2</span>
+        <div>
+          <p class="text-sm font-medium text-gray-900 dark:text-white">点击右上角的 <strong>+</strong> 号按钮</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">弹出"添加节点"和"添加订阅"选项</p>
+        </div>
+      </li>
+      <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold flex-shrink-0">3</span>
+        <div>
+          <p class="text-sm font-medium text-gray-900 dark:text-white">选择 <strong>添加订阅</strong>，在 URL 输入框中粘贴你的订阅链接</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">可自定义备注名称方便识别</p>
+        </div>
+      </li>
+      <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+        <span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold flex-shrink-0">4</span>
+        <div>
+          <p class="text-sm font-medium text-gray-900 dark:text-white">点击 <strong>保存</strong>，Shadowrocket 将自动下载并解析订阅</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">导入成功后返回首页即可看到所有节点</p>
+        </div>
+      </li>
+    </ol>
+    <div class="p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800/50 rounded-lg">
+      <div class="flex gap-3">
+        <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        <div>
+          <p class="text-sm font-medium text-green-800 dark:text-green-200">💡 提示</p>
+          <p class="text-sm text-green-700 dark:text-green-300 mt-1">如果你的订阅链接是 Clash 格式（YAML），但 Shadowrocket 无法直接识别，可以先使用在线订阅转换工具（如 <a href="https://sub.v1.mk/" target="_blank" rel="noopener noreferrer" class="underline">subconverter</a>）将订阅转换为 Shadowrocket 支持的格式。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 3: 节点选择与测速 -->
+<div id="step-3" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-500 text-white text-lg font-bold shadow-md">3</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">节点选择与测速</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      订阅导入成功后，返回 Shadowrocket 首页即可看到所有节点。每个节点左侧有信号图标和延迟信息。
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-5">
+      <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          测速方法
+        </h4>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+          <li>• 点击首页右上角的 <strong>测速</strong> 按钮</li>
+          <li>• 选择测速模式（连接测试 / 速度测试）</li>
+          <li>• 连接测试：快速检测延迟（推荐）</li>
+          <li>• 速度测试：检测下载速度（耗流量）</li>
+          <li>• 测试完成后节点将按延迟排序</li>
+        </ul>
+      </div>
+      <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          选择建议
+        </h4>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+          <li>• 日常浏览：选延迟最低的节点</li>
+          <li>• 看视频：选速度快的节点</li>
+          <li>• 玩游戏：选延迟稳定、丢包低的</li>
+          <li>• 解锁流媒体：选对应地区的节点</li>
+        </ul>
+      </div>
+    </div>
+    <div class="p-4 bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-800/50 rounded-lg">
+      <p class="text-sm text-yellow-700 dark:text-yellow-300">📌 点击节点右侧的 <strong>感叹号图标</strong> 可以查看节点的详细信息，包括协议类型、加密方式、服务器地址等。通过 <strong>长按</strong> 节点可将其设为默认节点。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Step 4: 开启代理 -->
+<div id="step-4" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-500 text-white text-lg font-bold shadow-md">4</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">开启代理</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      选择好节点后，只需一步即可开启代理。Shadowrocket 提供了两种启动方式：
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-5">
+      <div class="p-4 border border-blue-200 dark:border-blue-800/50 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">方式一：首页开关</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">在 Shadowrocket 首页，点击顶部的连接开关按钮。开启后状态栏会显示 VPN 图标，表示代理已生效。</p>
+      </div>
+      <div class="p-4 border border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950/30 rounded-lg">
+        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">方式二：快捷指令</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Shadowrocket 支持通过 iOS 快捷指令一键开关代理。在"快捷指令"App 中添加 Shadowrocket 操作即可设置自动化场景，例如连接特定 Wi-Fi 时自动开启。</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 p-4 bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800/50 rounded-lg">
+      <svg class="w-5 h-5 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <p class="text-sm text-indigo-700 dark:text-indigo-300">💡 <strong>提示：</strong>开启代理后，你可以在 <strong>设置</strong> → <strong>全局路由</strong> 中选择代理模式：配置（规则分流）、全局（全部代理）、直连（全部直连）。日常使用建议保持"配置"模式。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Step 5: 规则与分组设置 -->
+<div id="step-5" class="not-prose mb-10 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-500 text-white text-lg font-bold shadow-md">5</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">规则与分组设置</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+    <div class="p-6">
+      <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+        Shadowrocket 的规则系统非常灵活，可以通过编辑配置文件实现精细化的流量分流管理。
+      </p>
+      <h4 class="font-bold text-gray-900 dark:text-white mb-3">规则编辑方法：</h4>
+      <div class="space-y-3 mb-5">
+        <div class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+          <span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold flex-shrink-0">1</span>
+          <div>
+            <p class="text-sm text-gray-700 dark:text-gray-200">进入 <strong>配置</strong> 选项卡 → 点击当前使用的配置文件 → 选择 <strong>编辑规则</strong></p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+          <span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold flex-shrink-0">2</span>
+          <div>
+            <p class="text-sm text-gray-700 dark:text-gray-200">点击右上角的 <strong>+</strong> 添加新规则，或长按现有规则进行编辑/排序</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+          <span class="w-6 h-6 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 text-xs font-bold flex-shrink-0">3</span>
+          <div>
+            <p class="text-sm text-gray-700 dark:text-gray-200">规则格式：<code class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs">类型, 匹配值, 策略</code>，例如：<code class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs">DOMAIN-SUFFIX, google.com, Proxy</code></p>
+          </div>
+        </div>
+      </div>
+      <h4 class="font-bold text-gray-900 dark:text-white mb-3">节点分组设置：</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">在配置文件中可以设置策略组，将多个节点放入一个分组中。例如：</p>
+      <div class="p-4 bg-gray-900 dark:bg-gray-950 rounded-lg text-sm font-mono text-green-400 mb-4 overflow-x-auto">
+        <pre class="whitespace-pre-wrap">[Proxy Group]
+Auto = select, url=http://www.gstatic.com/generate_204, interval=600
+Proxy = select, 🏁 香港 01, 🏁 香港 02, 🇯🇵 日本 01, 🇸🇬 新加坡 01</pre>
+      </div>
+      <div class="p-4 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/50 rounded-lg">
+        <p class="text-sm text-blue-700 dark:text-blue-300">📌 <strong>分组策略说明：</strong>select 为手动选择，url-test 为自动测速选择最优节点，fallback 为主备切换，load-balance 为负载均衡。新手建议使用 select 手动选择即可。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="not-prose my-10 border-t border-gray-200 dark:border-gray-700">
+
+<!-- FAQ Accordion -->
+<div id="faq" class="not-prose mb-8 scroll-mt-24" x-data="{ active: null }">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">❓ Shadowrocket 常见问题</h2>
+  <div class="space-y-3">
+    <!-- FAQ 1 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 1 }">
+      <button @click="active = active === 1 ? null : 1" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Shadowrocket 和 Surge / Quantumult X / Stash 有什么区别？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 1" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>iOS 平台主流代理客户端对比：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>Shadowrocket（$2.99）</strong>：轻量简洁，上手容易，功能够用，性价比最高</li>
+            <li><strong>Surge（$49.99）</strong>：功能最强大，支持脚本、MITM、网关模式，适合专业用户和开发者，价格昂贵</li>
+            <li><strong>Quantumult X（$7.99）</strong>：功能丰富，支持脚本和重写，介于 Shadowrocket 和 Surge 之间</li>
+            <li><strong>Stash（$2.99）</strong>：基于 Clash 内核的 iOS 客户端，支持 Clash 规则集，适合 Clash 用户</li>
+          </ul>
+          <p class="mt-2">如果你是普通用户（只需要浏览网页、看视频），Shadowrocket 完全够用且性价比最高。如果需要高级功能（如 HTTP 抓包、脚本自动化），可以考虑 Surge 或 Quantumult X。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 2 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 2 }">
+      <button @click="active = active === 2 ? null : 2" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">为什么 Shadowrocket 连上后无法访问某些网站？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 2" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>可能的原因和解决方法：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>节点问题</strong>：当前节点可能无法访问目标网站，切换到其他节点试试</li>
+            <li><strong>DNS 污染</strong>：在 Shadowrocket 的设置中开启"DNS 加密"或使用干净的 DNS（如 1.1.1.1、8.8.8.8）</li>
+            <li><strong>规则问题</strong>：检查配置中的规则是否将该网站错误地设置为直连或拒绝</li>
+            <li><strong>全局路由模式</strong>：尝试将全局路由从"配置"切换为"全局"测试</li>
+            <li><strong>网络环境</strong>：某些网络环境（如公司/学校网络）可能限制了代理使用</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 3 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 3 }">
+      <button @click="active = active === 3 ? null : 3" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">如何更新 Shadowrocket 的订阅？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 3" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>更新订阅的方法：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>手动更新</strong>：进入 配置 选项卡 → 长按订阅名称 → 选择"更新订阅"</li>
+            <li><strong>自动更新</strong>：设置 → 订阅 → 开启"自动更新"，并设置更新间隔（建议每 24 小时）</li>
+            <li><strong>启动时更新</strong>：设置 → 订阅 → 开启"启动时更新订阅"</li>
+          </ul>
+          <p class="mt-2">建议开启自动更新功能。如果节点突然全部不可用，首先尝试更新订阅，可能是机场更新了节点信息。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 4 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 4 }">
+      <button @click="active = active === 4 ? null : 4" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Shadowrocket 耗电吗？会影响日常使用吗？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 4" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>Shadowrocket 的耗电量和影响：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>耗电量</strong>：正常使用情况下，Shadowrocket 的耗电量很低，约占总电量的 1-3%，几乎可以忽略</li>
+            <li><strong>网络延迟</strong>：开启代理后网络延迟会略有增加（通常 5-30ms），日常使用基本无感</li>
+            <li><strong>网速影响</strong>：取决于节点质量，好节点反而可能加速，差节点会拖慢网速</li>
+            <li><strong>后台运行</strong>：Shadowrocket 会在后台保持 VPN 连接，但 iOS 系统优化得很好，不会显著影响续航</li>
+            <li><strong>按需连接</strong>：在设置中开启"按需连接"，手机会在连接特定网络时自动开启/关闭代理，减少不必要的耗电</li>
+          </ul>
+          <p class="mt-2">总的来说，Shadowrocket 对日常使用的影响非常小，建议保持常开状态。如果你比较在意耗电，可以开启"按需连接"功能。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 5 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 5 }">
+      <button @click="active = active === 5 ? null : 5" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Shadowrocket 无法安装/闪退/连接失败怎么办？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 5" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>常见问题及解决方法：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>无法安装</strong>：确认 App Store 账号所在地支持 Shadowrocket（美区、港区、日区等都可），或切换账号重新登录</li>
+            <li><strong>闪退</strong>：更新 iOS 系统到最新版本，或卸载重装 Shadowrocket</li>
+            <li><strong>连接失败</strong>：检查订阅是否过期 → 尝试更换节点 → 切换全局路由模式 → 重启 App → 重启手机</li>
+            <li><strong>DNS 错误</strong>：设置 → DNS → 改为 1.1.1.1 或 8.8.8.8，或开启 DNS 加密</li>
+            <li><strong>VPN 冲突</strong>：Shadowrocket 使用 VPN 配置实现代理，请先关闭其他 VPN 类 App</li>
+            <li><strong>配置重置</strong>：在设置 → 最底部 → 点击"重置配置"恢复出厂设置</li>
+          </ul>
+          <p class="mt-2">如果以上都无法解决，建议去机场的售后群或 Shadowrocket 的 Telegram 群组寻求帮助。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

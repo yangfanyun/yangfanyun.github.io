@@ -1,0 +1,418 @@
+<!-- FAQ Section -->
+<section id="faq" class="py-20 relative overflow-hidden bg-gray-50 dark:bg-gray-900/50" data-gsap="section">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-14" data-gsap="fade-up">
+      <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 mb-4">常见问题</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">💬 常见问题</h2>
+      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">关于机场和代理的常见问题解答，帮助您快速了解相关知识。</p>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div x-data="{ activeItem: null }" data-gsap="fade-up">
+      <!-- Item 1 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 1 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 1 ? null : 1" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是杨帆云？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 1 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 1" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            杨帆云是指价格非常低廉（低至一元起）的网络代理机场服务。这类机场通常通过批量采购带宽、优化线路配置来降低运营成本，从而为用户提供高性价比的代理服务。杨帆云致力于精选这些高性价比的机场，为用户提供可靠的推荐和评测。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 2 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 2 ? null : 2" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">为什么机场价格这么低？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 2 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 2" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            机场价格低廉的原因包括：批量采购服务器带宽获得折扣、采用共享带宽模式分摊成本、通过技术手段优化线路效率、减少营销费用靠口碑传播等。但价格过低也可能意味着服务质量或安全性存疑，建议选择有口碑的机场。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 3 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 3 ? null : 3" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Clash是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 3 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 3" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Clash是一款基于Go语言开发的开源跨平台代理客户端，支持SS/SSR/V2Ray/Trojan等多种协议，具有规则分流、策略组、订阅更新等功能。Clash是当前最流行的代理客户端之一，有Clash for Windows、ClashX、Clash for Android等多个版本。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 4 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 4 ? null : 4" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">机场安全吗？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 4 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 4" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            正规机场会采取加密传输、不记录日志等安全措施，相对安全。但仍需注意：尽量选择有口碑的知名机场，避免使用来路不明的免费机场，不要在代理环境下输入敏感个人信息，定期更换订阅链接和密码。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 5 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 5 ? null : 5" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">订阅失效怎么办？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 5 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 5" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            订阅链接失效通常有以下原因：套餐到期需要续费、机场更换了订阅地址、触发了滥用规则被限制。建议先登录机场官网查看套餐状态，如确认问题可联系机场客服处理。日常使用建议保存多个备用机场。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 6 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 6 ? null : 6" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Clash节点是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 6 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 6" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Clash节点是指代理服务器在Clash客户端中的配置条目，包含服务器地址、端口、加密协议、密码等信息。每个节点代表一台可连接的代理服务器，用户可以在Clash的Proxies面板中切换不同节点使用。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 7 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 7 ? null : 7" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">SS/SSR/V2Ray/Trojan有什么区别？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 7 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 7" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            SS（Shadowsocks）是最早的轻量代理协议；SSR是Shadowsocks的衍生版，增加了混淆功能；V2Ray是更强大的代理平台，支持多种协议（VMess等）和传输方式；Trojan基于HTTPS流量伪装，隐蔽性更好。目前主流推荐使用V2Ray（VMess）和Trojan协议。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 8 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 8 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 8 ? null : 8" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是有图比？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 8 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 8" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            "有图比"是"YouTube"的中文网络谐音称呼。在机场评测中经常提到是否支持观看YouTube视频，通常用来测试代理的速度和流媒体解锁能力，尤其是4K/8K视频的播放流畅度。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 9 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 9 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 9 ? null : 9" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">CN2 GIA是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 9 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 9" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            CN2 GIA（China Telecom Next Generation Carrying Network Global Internet Access）是中国电信推出的优质国际线路产品。相比于普通的163骨干网，CN2 GIA具有更低延迟、更少丢包、更稳定的特点，是回国线路中的顶级选择。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 10 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 10 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 10 ? null : 10" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">IEPL和IPLC有什么区别？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 10 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 10" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            IEPL（International Ethernet Private Line）和IPLC（International Private Leased Circuit）都是国际专线。IPLC是传统的时分复用（TDM）专线技术，IEPL是基于以太网的专线技术。两者都具有高稳定性、低延迟的特点，但IEPL在带宽弹性扩展方面更有优势，且成本相对较低。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 11 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 11 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 11 ? null : 11" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">翻墙违法吗？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 11 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 11" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            在中国，私自搭建或使用VPN/代理服务翻墙访问被屏蔽的境外网站，违反了《中华人民共和国计算机信息网络国际联网管理暂行规定》等相关法规。但合法的企业VPN和经批准的跨境通信服务是允许的。请用户自行了解并遵守当地法律法规。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 12 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 12 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 12 ? null : 12" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Clash怎么更新订阅？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 12 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 12" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            在Clash客户端中通常有"更新订阅"或"升级"按钮。Clash for Windows：右击系统托盘图标→点击"更新订阅"；ClashX：点击菜单栏图标→配置→远程配置→更新；Clash for Android：打开应用→点击配置→点击订阅→右上角更新图标。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 13 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 13 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 13 ? null : 13" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">机场节点越多越好吗？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 13 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 13" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            不一定。节点数量多固然选择丰富，但关键看节点质量（速度、稳定性、延迟）和覆盖地区是否满足需求。很多优质机场只有10-20个节点但个个能打，比某些几百个节点但大部分不可用的机场体验好得多。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 14 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 14 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 14 ? null : 14" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是倍率？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 14 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 14" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            倍率是机场计费中的概念，指使用某节点时实际消耗流量 = 使用流量 × 节点倍率。例如倍率2.0的节点看1GB视频会扣除2GB流量。通常高速/专线节点倍率较高（1.5-3.0），普通节点倍率为1.0。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 15 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 15 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 15 ? null : 15" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么叫流媒体解锁？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 15 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 15" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            流媒体解锁是指代理节点能够成功访问Netflix、Disney+、HBO、YouTube Premium等流媒体平台的能力。由于这些平台有区域版权限制，需要节点IP属于支持的地区才能观看。好的机场会明确标注是否支持流媒体解锁。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 16 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 16 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 16 ? null : 16" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">ChatGPT节点是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 16 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 16" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            ChatGPT节点是指能够正常访问OpenAI ChatGPT的代理节点。由于ChatGPT对访问IP有限制，部分机场专门提供优化线路确保能稳定使用ChatGPT。选择时需注意机场是否明确支持ChatGPT访问。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 17 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 17 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 17 ? null : 17" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">机场的在线率是什么意思？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 17 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 17" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            在线率（Uptime）指机场节点在一定时间内的可用时间百分比。99.9%在线率表示一年中只有约8.76小时的不可用时间。在线率是衡量机场稳定性的重要指标，选择时建议优先考虑在线率高的机场。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 18 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 18 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 18 ? null : 18" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是中转机场？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 18 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 18" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            中转机场是指通过国内服务器中转流量的代理方案。用户先连接到国内中转服务器，再由中转服务器连接到境外节点。这种方式可以大幅降低延迟和丢包率，提升网络体验，但成本相对较高。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 19 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 19 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 19 ? null : 19" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是直连机场？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 19 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 19" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            直连机场指用户直接连接到境外代理服务器，中间没有国内中转。优点是成本低、延迟直接，但受国际出口带宽影响，晚高峰可能出现拥堵。适合对价格敏感且非高峰时段使用的用户。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 20 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 20 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 20 ? null : 20" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">机场会被墙吗？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 20 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 20" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            机场的服务器IP如果被识别并列入黑名单（被墙），国内用户将无法连接。正规机场会定期更换IP、使用CDN伪装、采用隧道技术等方式避免被墙。这也是为什么订阅链接需要更新的原因之一。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 21 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 21 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 21 ? null : 21" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是V2Ray？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 21 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 21" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            V2Ray是Project V的核心工具，是一个强大的代理平台。它支持多种协议（VMess、Shadowsocks、Socks等）、多种传输方式（TCP、WebSocket、HTTP/2、QUIC等）和多种伪装方式，是目前最主流的代理技术之一。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 22 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 22 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 22 ? null : 22" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是Trojan？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 22 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 22" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Trojan是一种基于TLS加密的代理协议，它将代理流量伪装成普通的HTTPS流量，使得流量特征与正常网站访问难以区分，因此具有很好的隐蔽性和抗检测能力。Trojan配置简单，性能优秀，是当前推荐的代理协议之一。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 23 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 23 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 23 ? null : 23" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是WireGuard？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 23 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 23" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            WireGuard是一种现代VPN协议，以其简洁的代码、高性能的加密和优秀的连接速度著称。部分机场开始支持WireGuard协议，相比传统协议有更好的速度和稳定性，但需要客户端支持。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 24 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 24 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 24 ? null : 24" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Clash Meta是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 24 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 24" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Clash Meta是Clash的一个衍生版本（分支），在原版Clash基础上增加了更多高级功能，如TUN模式（虚拟网卡）、更多协议支持、更好的规则处理等。目前Clash Meta已改名为Clash Verge。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 25 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 25 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 25 ? null : 25" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Surge是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 25 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 25" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Surge是iOS/macOS平台上的一款功能强大的网络调试和代理客户端，由Accelerated Engineering开发。它支持代理、抓包、网络调试等功能，是很多苹果用户的代理首选，但需要付费购买。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 26 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 26 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 26 ? null : 26" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Quantumult X是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 26 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 26" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Quantumult X是iOS平台上的一款高级代理客户端，支持SS/SSR/V2Ray/Trojan等多种协议，具有丰富的策略配置和脚本扩展功能。与Surge并称为iOS两大代理神器。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 27 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 27 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 27 ? null : 27" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Stash是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 27 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 27" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Stash是iOS平台上的Clash内核代理客户端，实现了与Clash兼容的配置格式和规则系统。它可以导入Clash配置文件，是iOS用户使用Clash规则的最佳选择之一。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 28 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 28 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 28 ? null : 28" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">Loon是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 28 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 28" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            Loon是iOS平台上的一款代理客户端，支持SS/SSR/V2Ray/Trojan/HTTP等多种协议，具有插件系统和脚本功能。它的配置方式与Surge类似，是iOS代理的另一选择。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 29 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 29 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 29 ? null : 29" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">什么是分流？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 29 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 29" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            分流（Rule-based Routing）是代理客户端根据预设规则，将不同流量导向不同出口的功能。例如：中国网站直连、境外网站走代理、流媒体走特定节点等。合理配置分流可以提升浏览速度和稳定性。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 30 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 30 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 30 ? null : 30" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">为什么晚高峰会卡？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 30 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 30" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            晚高峰（通常19:00-23:00）是国内用户上网最集中的时段，国际出口带宽拥堵严重，导致代理速度下降。选择有充足带宽储备的机场、使用中转线路或专线节点可以有效缓解晚高峰卡顿问题。
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 31 -->
+      <div class="mb-3 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800 transition-all duration-200" :class="activeItem === 31 ? 'shadow-md' : 'shadow-sm hover:shadow'">
+        <button @click="activeItem = activeItem === 31 ? null : 31" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+          <span class="text-sm font-medium text-gray-900 dark:text-white pr-4">机场的审计规则是什么？</span>
+          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-200" :class="activeItem === 31 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="activeItem === 31" x-collapse>
+          <div class="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
+            审计规则是机场为防止滥用而设置的限制，通常包括：禁止BT下载、禁止端口扫描、禁止发送垃圾邮件、禁止攻击他人服务器等。违反审计规则可能导致账号被限制或封禁。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

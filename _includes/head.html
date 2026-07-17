@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#0a1628">
+
+    {%- seo -%}
+
+    {%- if page.keywords -%}
+    <meta name="keywords" content="{{ page.keywords }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+    {%- feed_meta -%}
+
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
+    <link rel="manifest" href="{{ '/manifest.json' | relative_url }}">
+
+    <!-- Google Fonts: Noto Sans SC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (预编译) -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    {%- if page.custom_css -%}
+        <link rel="stylesheet" href="{{ page.custom_css | relative_url }}">
+    {%- endif -%}
+
+    <!-- JSON-LD Breadcrumb -->
+    {%- if page.breadcrumb -%}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "首页", "item": "{{ '/' | absolute_url }}"}
+            {%- for crumb in page.breadcrumb -%}
+            ,{"@type": "ListItem", "position": {{ forloop.index | plus: 1 }}, "name": "{{ crumb.name }}", "item": "{{ crumb.url | absolute_url }}"}
+            {%- endfor -%}
+        ]
+    }
+    </script>
+    {%- endif -%}
+
+    <!-- JSON-LD Site Search -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "{{ '/' | absolute_url }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "{{ '/?s=' | absolute_url }}{search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</head>
+<body class="bg-white dark:bg-[#0a1628] text-gray-900 dark:text-gray-100 font-sans antialiased transition-colors duration-300" x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }" x-init="$watch('darkMode', val => { document.documentElement.classList.toggle('dark', val); localStorage.setItem('theme', val ? 'dark' : 'light') })" :class="{ 'dark': darkMode }">

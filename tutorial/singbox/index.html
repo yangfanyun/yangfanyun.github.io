@@ -1,0 +1,520 @@
+---
+title: Sing-box 教程 - 新一代代理工具配置指南
+layout: page
+permalink: /tutorial/singbox/
+description: Sing-box使用教程，新一代通用代理平台，支持SS/V2Ray/Trojan/Hysteria等多种协议。涵盖下载安装、JSON配置、TUN模式设置和Clash配置转换，全平台可用。
+keywords: Sing-box教程,Sing-box配置,Sing-box下载,代理平台,Clash替代,Sing-box TUN模式,全平台代理
+breadcrumb:
+  - name: 使用教程
+    url: /tutorial/
+  - name: Sing-box教程
+    url: /tutorial/singbox/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sing-box 配置教程",
+  "description": "新一代通用代理平台 Sing-box 的完整配置指南，涵盖下载安装、配置文件编写、订阅转换、TUN 模式等进阶用法。",
+  "author": {
+    "@type": "Organization",
+    "name": "杨帆云"
+  },
+  "datePublished": "2026-03-01",
+  "dateModified": "2026-07-10",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://yangfanyun.github.io/tutorial/singbox/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "杨帆云"
+  }
+}
+</script>
+
+<!-- 简介 -->
+<div class="not-prose mb-10">
+  <div class="bg-gradient-to-r from-cyan-50 to-teal-50 dark:from-cyan-950/30 dark:to-teal-950/30 border border-cyan-200 dark:border-cyan-800/50 rounded-2xl p-6 sm:p-8">
+    <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+      <strong>Sing-box</strong> 是由 SagerNet 团队开发的新一代通用代理平台，使用 Go 语言编写，以高性能、低资源占用和高度灵活的配置而著称。它可以作为 Clash 的现代替代品，支持 Shadowsocks、VMess、Trojan、VLESS、Hysteria2 等多种代理协议。
+    </p>
+    <p class="text-base text-gray-600 dark:text-gray-300 mt-4 leading-relaxed">
+      本教程将带你深入了解 Sing-box 的完整使用流程——从基础下载安装到配置文件的编写、订阅转换、服务启动，再到 TUN 模式等进阶功能。无论你是从 Clash 迁移过来的老用户，还是第一次接触 Sing-box 的新手，本文都能帮助你快速上手。Sing-box 的配置虽然以 JSON 格式为主，看似复杂，但掌握核心结构后会变得非常灵活和强大。
+    </p>
+    <div class="flex flex-wrap gap-3 mt-5">
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        适用平台：全平台
+      </span>
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        开源免费
+      </span>
+      <span class="inline-flex items-center px-3 py-1 text-sm bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full">
+        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        高性能低占用
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- 什么是 Sing-box -->
+<div class="not-prose mb-8">
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+      <svg class="w-6 h-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      什么是 Sing-box？
+    </h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="p-4 bg-cyan-50 dark:bg-cyan-950/20 rounded-lg border border-cyan-200 dark:border-cyan-800/50">
+        <h4 class="font-bold text-gray-900 dark:text-white mb-2">核心特点</h4>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1.5">
+          <li>• 使用 Go 语言编写，性能极高</li>
+          <li>• 内存占用极低（通常 < 50MB）</li>
+          <li>• 支持 SS、VMess、Trojan、VLESS、Hysteria2、TUIC 等</li>
+          <li>• 支持 TUN 模式（虚拟网卡全局代理）</li>
+          <li>• 灵活的路由规则系统</li>
+          <li>• 多平台支持（Windows/macOS/Linux/Android/iOS）</li>
+        </ul>
+      </div>
+      <div class="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800/50">
+        <h4 class="font-bold text-gray-900 dark:text-white mb-2">与 Clash 的对比</h4>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1.5">
+          <li>• 配置格式为 JSON，比 YAML 更严谨</li>
+          <li>• 无图形界面（需搭配 GUI 或命令行使用）</li>
+          <li>• 架构更清晰，分 in/out/route 三层</li>
+          <li>• 支持 Hysteria2 等新协议</li>
+          <li>• 社区规模小于 Clash，但增长迅速</li>
+          <li>• 更适合喜欢命令行和配置文件的用户</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 目录 -->
+<div class="not-prose mb-10">
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-3">📋 内容目录</h2>
+    <ul class="space-y-1.5">
+      <li><a href="#step-1" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 text-xs font-bold">1</span> 下载安装</a></li>
+      <li><a href="#step-2" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 text-xs font-bold">2</span> 配置文件结构</a></li>
+      <li><a href="#step-3" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 text-xs font-bold">3</span> 订阅转换</a></li>
+      <li><a href="#step-4" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 text-xs font-bold">4</span> 启动运行</a></li>
+      <li><a href="#step-5" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 text-xs font-bold">5</span> TUN 模式</a></li>
+      <li><a href="#faq" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"><span class="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 text-xs font-bold">❓</span> 常见问题</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Step 1: 下载安装 -->
+<div id="step-1" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-cyan-500 text-white text-lg font-bold shadow-md">1</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">下载安装</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+    <div class="p-6">
+      <p class="text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
+        Sing-box 提供多种安装方式，推荐从官方 GitHub Releases 下载预编译二进制文件，或使用包管理器一键安装。
+      </p>
+      <div class="grid sm:grid-cols-2 gap-4 mb-5">
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-cyan-50/30 dark:bg-cyan-950/20">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-2">Windows / macOS / Linux</h4>
+          <ol class="text-sm text-gray-600 dark:text-gray-400 space-y-1.5 ml-4 list-decimal">
+            <li>访问 <a href="https://github.com/SagerNet/sing-box/releases" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">GitHub Releases</a></li>
+            <li>下载对应平台和架构的压缩包</li>
+            <li>解压后将二进制文件放入 PATH 目录</li>
+            <li>终端运行 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">sing-box version</code> 验证</li>
+          </ol>
+        </div>
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-purple-50/30 dark:bg-purple-950/20">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-2">macOS (Homebrew)</h4>
+          <ol class="text-sm text-gray-600 dark:text-gray-400 space-y-1.5 ml-4 list-decimal">
+            <li>安装 Homebrew（如已安装请跳过）</li>
+            <li>执行：<code class="px-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">brew install SagerNet/sing-box/sing-box</code></li>
+            <li>安装服务：<code class="px-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">brew services start sing-box</code></li>
+            <li>配置文件位于 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">/usr/local/etc/sing-box/</code></li>
+          </ol>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4 mb-4">
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-green-50/30 dark:bg-green-950/20">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-2">iOS / iPadOS</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">推荐使用 <strong>Sing-box for iOS</strong>（App Store 美区/港区可下载），或使用 <strong>Streisand</strong> 等第三方 GUI。</p>
+        </div>
+        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5 bg-yellow-50/30 dark:bg-yellow-950/20">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-2">Android</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">推荐使用 <strong>Sing-box for Android</strong>（Google Play / GitHub 均可下载）。F-Droid 上也有上架。</p>
+        </div>
+      </div>
+      <div class="p-4 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/50 rounded-lg">
+        <div class="flex gap-3">
+          <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <p class="text-sm font-medium text-amber-800 dark:text-amber-200">💡 提示</p>
+            <p class="text-sm text-amber-700 dark:text-amber-300 mt-1">Sing-box 本身是命令行工具，没有图形界面。如果你需要 GUI 管理，可以搭配 <strong>SFI</strong>（Sing-box for iOS）、<strong>SFA</strong>（Sing-box for Android）或 <strong>Hiddify Next</strong> 等第三方管理器使用。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 2: 配置文件结构 -->
+<div id="step-2" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-cyan-500 text-white text-lg font-bold shadow-md">2</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">配置文件结构</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+    <div class="p-6">
+      <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+        Sing-box 使用 JSON 格式配置，核心分为三大块：<strong>inbounds（入站）</strong>、<strong>outbounds（出站）</strong>、<strong>route（路由）</strong>。了解这个结构是配置 Sing-box 的关键。
+      </p>
+      <div class="grid md:grid-cols-3 gap-4 mb-5">
+        <div class="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800/50">
+          <h4 class="font-bold text-blue-700 dark:text-blue-300 text-sm mb-2">📥 Inbounds（入站）</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400">定义代理的监听端口和协议。例如 SOCKS5 入站监听 1080 端口，HTTP 入站监听 8080 端口，或 TUN 入站创建虚拟网卡。</p>
+        </div>
+        <div class="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800/50">
+          <h4 class="font-bold text-green-700 dark:text-green-300 text-sm mb-2">📤 Outbounds（出站）</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400">定义出站代理节点，包括协议类型、服务器地址、端口、加密方式等。可以定义多个出站，用于不同的分流策略。</p>
+        </div>
+        <div class="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800/50">
+          <h4 class="font-bold text-purple-700 dark:text-purple-300 text-sm mb-2">🔄 Route（路由）</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400">定义流量匹配规则，决定哪些流量走哪个出站。支持域名、IP、GEOIP、规则集等多种匹配方式，规则从上到下依次匹配。</p>
+        </div>
+      </div>
+      <h4 class="font-bold text-gray-900 dark:text-white mb-3">最小配置文件示例：</h4>
+      <div class="p-4 bg-gray-900 dark:bg-gray-950 rounded-lg text-sm font-mono text-green-400 mb-4 overflow-x-auto">
+        <pre class="whitespace-pre-wrap">{
+  "log": { "level": "info" },
+  "inbounds": [
+    {
+      "type": "socks",
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1080
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "example.com",
+      "server_port": 443,
+      "uuid": "your-uuid-here",
+      "flow": "xtls-rprx-vision"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      { "domain_suffix": "google.com", "outbound": "proxy" },
+      { "domain_suffix": "cn.bing.com", "outbound": "direct" }
+    ]
+  }
+}</pre>
+      </div>
+      <div class="p-4 bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-800/50 rounded-lg">
+        <p class="text-sm text-yellow-700 dark:text-yellow-300">📌 配置文件默认路径：Linux/macOS 为 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">/etc/sing-box/config.json</code>，Windows 为运行目录下的 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">config.json</code>。可使用 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">-c</code> 参数指定配置文件路径。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 3: 订阅转换 -->
+<div id="step-3" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-cyan-500 text-white text-lg font-bold shadow-md">3</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">订阅转换</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      大部分机场提供的是 Clash（YAML）格式或通用 Base64 格式的订阅链接，不能直接用于 Sing-box。你需要使用订阅转换工具将其转换为 Sing-box 支持的 JSON 格式。
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-5">
+      <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <h4 class="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-1.5 text-sm">
+          <span class="text-cyan-500">①</span> 在线转换工具
+        </h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">访问以下网站即可在线转换：</p>
+        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+          <li>• <a href="https://sub.v1.mk/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">subconverter</a></li>
+          <li>• <a href="https://id9.cc/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">ID9 订阅转换</a></li>
+          <li>• <a href="https://bianyuan.xyz/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">便签订阅转换</a></li>
+        </ul>
+        <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">选择目标格式为 "Sing-box" 或 "SagerNet" 即可。</p>
+      </div>
+      <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <h4 class="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-1.5 text-sm">
+          <span class="text-cyan-500">②</span> 自建转换
+        </h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">使用 sing-box 自带的 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">sing-box merge</code> 命令：</p>
+        <pre class="text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1">sing-box merge -c base.json -c subscription.json -o config.json</pre>
+        <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">也可以搭配 subconverter 自建后端实现自动化转换。</p>
+      </div>
+    </div>
+    <div class="p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800/50 rounded-lg">
+      <div class="flex gap-3">
+        <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        <div>
+          <p class="text-sm font-medium text-green-800 dark:text-green-200">💡 提示</p>
+          <p class="text-sm text-green-700 dark:text-green-300 mt-1">转换后的配置文件可能需要进行微调，特别是路由规则部分。你可以手动编辑 JSON 文件来添加自定义规则（如特定网站直连、广告拦截等）。推荐在转换基础上保留一个基础配置模板，便于后续复用。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 4: 启动运行 -->
+<div id="step-4" class="not-prose mb-8 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-cyan-500 text-white text-lg font-bold shadow-md">4</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">启动运行</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      配置文件准备好后，就可以启动 Sing-box 了。以下是不同平台的启动方式：
+    </p>
+    <div class="space-y-4 mb-5">
+      <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <h4 class="font-bold text-gray-900 dark:text-white mb-2">命令行启动（通用）</h4>
+        <pre class="text-sm bg-gray-900 dark:bg-gray-950 text-green-400 p-3 rounded-lg overflow-x-auto"># 前台运行（调试用）
+sing-box run -c /path/to/config.json
+
+# 后台运行（Linux/macOS）
+sing-box run -c /path/to/config.json &amp;
+
+# 作为服务运行（macOS Homebrew）
+brew services start sing-box
+
+# 检查配置文件是否有语法错误
+sing-box check -c /path/to/config.json</pre>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800/50">
+          <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">Windows</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400">下载 Windows 版本后，在 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">sing-box.exe</code> 所在目录创建 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">config.json</code>，然后双击运行或通过命令行执行 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">sing-box.exe run</code>。也可注册为 Windows 服务实现开机自启。</p>
+        </div>
+        <div class="p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800/50">
+          <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">iOS / Android</h4>
+          <p class="text-xs text-gray-600 dark:text-gray-400">使用 GUI 版本（Sing-box for iOS / Android），在 App 内设置中导入 JSON 配置文件，然后点击连接按钮即可。GUI 版本会自动处理服务启动和后台保活。</p>
+        </div>
+      </div>
+    </div>
+    <div class="p-4 bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-800/50 rounded-lg">
+      <p class="text-sm text-yellow-700 dark:text-yellow-300">⚠️ 首次运行时建议使用前台模式（不加 &amp;），观察日志输出。如果日志中出现 error 信息，说明配置文件可能有问题，使用 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">sing-box check</code> 命令校验。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Step 5: TUN 模式 -->
+<div id="step-5" class="not-prose mb-10 scroll-mt-24">
+  <div class="flex items-center gap-3 mb-4">
+    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-cyan-500 text-white text-lg font-bold shadow-md">5</span>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">TUN 模式</h2>
+  </div>
+  <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+    <div class="p-6">
+      <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+        TUN 模式是 Sing-box 最强大的功能之一，它会在系统中创建一张虚拟网卡，将所有系统流量（包括游戏、UWP 应用、命令行、Ping 等）接管到 Sing-box 进行代理或路由。
+      </p>
+      <h4 class="font-bold text-gray-900 dark:text-white mb-3">在配置文件中添加 TUN 入站：</h4>
+      <div class="p-4 bg-gray-900 dark:bg-gray-950 rounded-lg text-sm font-mono text-green-400 mb-5 overflow-x-auto">
+        <pre class="whitespace-pre-wrap">{
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "sing-tun0",
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 1500,
+      "auto_route": true,
+      "strict_route": true
+    }
+  ]
+}</pre>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4 mb-4">
+        <div class="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">参数说明</h4>
+          <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+            <li><strong>type: "tun"</strong> — 声明为 TUN 入站</li>
+            <li><strong>interface_name</strong> — 虚拟网卡名称</li>
+            <li><strong>inet4_address</strong> — 虚拟网卡 IP 地址</li>
+            <li><strong>mtu</strong> — 最大传输单元</li>
+            <li><strong>auto_route</strong> — 自动设置路由表</li>
+            <li><strong>strict_route</strong> — 严格路由模式</li>
+          </ul>
+        </div>
+        <div class="p-4 bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800/50">
+          <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-2">⚠️ 注意事项</h4>
+          <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+            <li>• 需要管理员/root 权限才能创建 TUN 设备</li>
+            <li>• Windows 下需要安装 WinTUN 驱动</li>
+            <li>• TUN 模式会接管所有流量，谨慎配置路由规则</li>
+            <li>• 启动 TUN 后其他 VPN 类应用可能无法同时使用</li>
+            <li>• 建议配置 fallback 出站避免断网</li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-4 bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800/50 rounded-lg">
+        <div class="flex gap-3">
+          <svg class="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <p class="text-sm font-medium text-indigo-800 dark:text-indigo-200">📌 进阶提示</p>
+            <p class="text-sm text-indigo-700 dark:text-indigo-300 mt-1">配合 <strong>auto_route</strong> 和 <strong>strict_route</strong> 可以实现类似 Clash TUN 模式的体验。但要注意，strict_route 开启后会阻止非代理 DNS 查询，可能导致某些局域网设备（如打印机）无法访问。建议在路由规则中添加局域网 IP 段的直连规则。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="not-prose my-10 border-t border-gray-200 dark:border-gray-700">
+
+<!-- FAQ Accordion -->
+<div id="faq" class="not-prose mb-8 scroll-mt-24" x-data="{ active: null }">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">❓ Sing-box 常见问题</h2>
+  <div class="space-y-3">
+    <!-- FAQ 1 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 1 }">
+      <button @click="active = active === 1 ? null : 1" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Sing-box 和 Clash 应该怎么选？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 1" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>两者各有优劣，根据你的需求选择：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>选 Sing-box 如果你</strong>：喜欢命令行、追求极致性能、需要 Hysteria2 等新协议、配置习惯 JSON、想要更灵活的路由系统</li>
+            <li><strong>选 Clash 如果你</strong>：需要图形界面（GUI）、更喜欢 YAML 配置、社区资源丰富、刚入门代理使用、需要快速部署</li>
+            <li><strong>两个都保留</strong>：很多用户同时安装两个客户端，日常用 Clash（简单方便），需要调试或特定场景用 Sing-box</li>
+          </ul>
+          <p class="mt-2">总体来说，新手建议从 Clash 开始，熟悉代理原理后再尝试 Sing-box。高级用户和喜欢折腾的用户可以直接上 Sing-box。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 2 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 2 }">
+      <button @click="active = active === 2 ? null : 2" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Sing-box 配置文件报错如何排查？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 2" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>排查配置文件错误的步骤：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>语法检查</strong>：运行 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">sing-box check -c config.json</code> 检查 JSON 语法</li>
+            <li><strong>查看日志</strong>：前台运行时输出日志，观察 error 和 warn 级别的消息</li>
+            <li><strong>常见错误</strong>：缺少必填字段、类型不对（如 string 写成了 number）、端口被占用、uuid 格式错误</li>
+            <li><strong>JSON 校验</strong>：使用在线 JSON 校验工具（如 jsonlint.com）检查格式</li>
+            <li><strong>官方文档</strong>：参考 <a href="https://sing-box.sagernet.org/configuration/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">Sing-box 官方配置文档</a></li>
+          </ul>
+          <p class="mt-2">如果使用订阅转换工具生成的配置报错，可以尝试在转换工具中选择不同的模板或版本。Sing-box 版本更新后部分配置字段可能发生变化，注意版本兼容性。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 3 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 3 }">
+      <button @click="active = active === 3 ? null : 3" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">如何让 Sing-box 开机自启？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 3" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>各平台开机自启配置方法：</p>
+          <ul class="list-disc ml-5 mt-2 space-y-1">
+            <li><strong>macOS (Homebrew)</strong>：<code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">brew services start sing-box</code>，Homebrew 会自动管理自启</li>
+            <li><strong>Linux (systemd)</strong>：<code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">systemctl enable sing-box</code>，需先创建 systemd service 文件</li>
+            <li><strong>Windows</strong>：使用 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">nssm</code> 将 sing-box 注册为 Windows 服务，或创建启动快捷方式放入启动文件夹（<code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">shell:startup</code>）</li>
+            <li><strong>iOS/Android</strong>：使用 GUI App 自带的后台保活功能，一般不需要额外配置</li>
+          </ul>
+          <p class="mt-2">注意：Windows 下使用 nssm 注册服务时，建议配置自动重启（如进程崩溃后自动重启）。macOS 下使用 launchd 也是另一种选择。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 4 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 4 }">
+      <button @click="active = active === 4 ? null : 4" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Sing-box 支持哪些代理协议？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 4" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>Sing-box 支持的协议非常丰富（截至最新版本）：</p>
+          <div class="grid sm:grid-cols-2 gap-3 mt-2">
+            <div>
+              <p class="font-medium text-gray-800 dark:text-gray-200 mb-1">入站（客户端）</p>
+              <ul class="list-disc ml-5 space-y-0.5 text-xs">
+                <li>Shadowsocks</li>
+                <li>VMess / VLESS</li>
+                <li>Trojan</li>
+                <li>Hysteria2</li>
+                <li>TUIC</li>
+                <li>SOCKS / HTTP</li>
+                <li>TUN / Redirect</li>
+                <li>Naive / ShadowTLS</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-medium text-gray-800 dark:text-gray-200 mb-1">出站（服务端）</p>
+              <ul class="list-disc ml-5 space-y-0.5 text-xs">
+                <li>Shadowsocks</li>
+                <li>VMess / VLESS</li>
+                <li>Trojan</li>
+                <li>Hysteria2</li>
+                <li>TUIC</li>
+                <li>Direct（直连）</li>
+                <li>Block（拒绝）</li>
+                <li>DNS</li>
+              </ul>
+            </div>
+          </div>
+          <p class="mt-3">Sing-box 的协议支持非常全面，尤其是对 Hysteria2 和 TUIC 等新协议的支持，使其在弱网环境下表现优于 Clash。</p>
+        </div>
+      </div>
+    </div>
+    <!-- FAQ 5 -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all" :class="{ 'shadow-md': active === 5 }">
+      <button @click="active = active === 5 ? null : 5" class="w-full flex items-center justify-between p-5 text-left focus:outline-none">
+        <span class="font-medium text-gray-900 dark:text-white pr-4">Sing-box 如何配置 DNS 和防止 DNS 泄漏？</span>
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': active === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div x-show="active === 5" x-collapse.duration.300ms class="border-t border-gray-200 dark:border-gray-700">
+        <div class="p-5 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+          <p>DNS 配置和防泄漏设置：</p>
+          <div class="p-3 bg-gray-900 dark:bg-gray-950 rounded-lg text-xs font-mono text-green-400 mb-3 overflow-x-auto">
+            <pre>{
+  "dns": {
+    "servers": [
+      { "tag": "proxy-dns", "address": "https://dns.cloudflare.com/dns-query", "detour": "proxy" },
+      { "tag": "direct-dns", "address": "223.5.5.5", "detour": "direct" }
+    ],
+    "rules": [
+      { "domain_suffix": ".cn", "server": "direct-dns" },
+      { "domain_suffix": "google.com", "server": "proxy-dns" }
+    ],
+    "final": "proxy-dns",
+    "strategy": "prefer_ipv4"
+  }
+}</pre>
+          </div>
+          <ul class="list-disc ml-5 space-y-1">
+            <li><strong>DNS 分流</strong>：国内域名用国内 DNS（如 223.5.5.5），国外域名用远程 DNS（如 Cloudflare DNS over HTTPS）</li>
+            <li><strong>防泄漏</strong>：在 TUN 模式中开启 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">strict_route</code> 可阻止非代理 DNS 请求</li>
+            <li><strong>推荐 DNS</strong>：远程 DNS 使用 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">https://dns.cloudflare.com/dns-query</code> 或 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">https://dns.google/dns-query</code></li>
+            <li><strong>本地 DNS</strong>：使用 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">223.5.5.5</code>（阿里）或 <code class="px-1 bg-gray-100 dark:bg-gray-700 rounded">119.29.29.29</code>（腾讯）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

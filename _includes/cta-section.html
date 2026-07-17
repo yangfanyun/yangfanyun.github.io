@@ -1,0 +1,27 @@
+<!-- ==================== CTA SECTION ==================== -->
+<section id="cta-section" class="py-20 relative overflow-hidden" data-gsap="fade-up">
+  <!-- Gradient Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 dark:from-blue-800 dark:via-indigo-900 dark:to-slate-900"></div>
+  <div class="absolute inset-0 bg-[url('{{ '/assets/images/hero-bg.svg' | relative_url }}')] bg-cover bg-center opacity-10"></div>
+  
+  <!-- Decorative blobs -->
+  <div class="absolute top-0 left-0 w-64 h-64 bg-blue-400 dark:bg-blue-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 animate-pulse"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400 dark:bg-indigo-500 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s"></div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight" data-gsap="fade-up" data-gsap-delay="100">
+      准备好开始了吗？
+    </h2>
+    <p class="text-xl md:text-2xl text-blue-100 mb-10 max-w-2xl mx-auto" data-gsap="fade-up" data-gsap-delay="200">
+      选择最适合你的机场，畅享高速网络
+    </p>
+    <div class="flex flex-wrap justify-center gap-4" data-gsap="fade-up" data-gsap-delay="300">
+      <a href="{{ '/airport/' | relative_url }}" class="inline-flex items-center px-8 py-3 rounded-lg bg-white text-blue-700 hover:bg-blue-50 font-semibold text-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
+        查看机场推荐 &rarr;
+      </a>
+      <a href="{{ '/tutorial/' | relative_url }}" class="inline-flex items-center px-8 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold text-lg backdrop-blur-sm border-2 border-white/30 hover:border-white/50 transition-all duration-300 hover:-translate-y-0.5">
+        阅读新手教程
+      </a>
+    </div>
+  </div>
+</section>

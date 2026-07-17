@@ -1,0 +1,69 @@
+# ─── 杨帆云 - Jekyll Config ───
+
+title: 杨帆云
+tagline: 精选高性价比机场推荐、Clash订阅、机场评测与网络加速知识
+description: >-
+  杨帆云 - 专注分享杨帆云推荐、杨帆云评测、便宜机场、高性价比机场、
+  Clash订阅、Clash节点等内容。导航站+教程站+评测站+资源站。
+url: "https://yangfanyun.github.io"
+baseurl: ""
+
+# ─── 社交 ───
+author: 杨帆云
+logo: /assets/images/logo.svg
+social:
+  name: 杨帆云
+  links:
+    - https://github.com/yangfanyun
+
+# ─── 主题设置 ───
+timezone: Asia/Shanghai
+lang: zh-CN
+markdown: kramdown
+highlighter: rouge
+
+# ─── 插件（github-pages 已内置） ───
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-redirect-from
+
+# ─── 分页 ───
+paginate: 8
+paginate_path: "/blog/page:num/"
+
+# ─── 默认 Front Matter ───
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: 杨帆云
+      toc: true
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# ─── Feed / RSS ───
+feed:
+  path: /feed.xml
+
+# ─── 包含目录 ───
+include:
+  - .well-known
+
+# ─── 排除 ───
+exclude:
+  - README.md
+  - package.json
+  - tailwind.config.js
+  - node_modules
+  - scripts/
+  - prompts/
+  - Gemfile.lock
+  - vendor

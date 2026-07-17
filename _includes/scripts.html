@@ -1,0 +1,233 @@
+<!-- JavaScript: Main Animation Init -->
+<script>
+/**
+ * Main animation initialization script
+ * Waits for GSAP + ScrollTrigger to load, then runs animations
+ */
+(function() {
+  'use strict';
+
+  // Wait for GSAP to be available
+  var initGSAP = function() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      // Retry after GSAP loads
+      document.addEventListener('gsapLoaded', initGSAP);
+      return;
+    }
+
+    // Register ScrollTrigger plugin if needed
+    if (gsap.registerPlugin) {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // --- Hero Animations ---
+    var heroSection = document.querySelector('[data-gsap="hero"]');
+    if (heroSection) {
+      // Hero particles animation
+      var particles = heroSection.querySelectorAll('.hero-particle');
+      if (particles.length) {
+        gsap.fromTo(particles,
+          { opacity: 0, scale: 0 },
+          {
+            opacity: 0.8,
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: 'elastic.out(1, 0.5)',
+            delay: 0.3
+          }
+        );
+        // Floating animation
+        gsap.to(particles, {
+          y: -15,
+          duration: 2 + Math.random() * 2,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          stagger: {
+            each: 0.3,
+            from: 'random'
+          }
+        });
+      }
+
+      // Hero lines animation
+      var lines = heroSection.querySelectorAll('.hero-line');
+      if (lines.length) {
+        gsap.fromTo(lines,
+          { strokeDasharray: '0, 1000', strokeDashoffset: 0 },
+          {
+            strokeDasharray: '1000, 1000',
+            duration: 2,
+            stagger: 0.2,
+            ease: 'power2.out',
+            delay: 0.5
+          }
+        );
+      }
+
+      // Hero content elements
+      var heroContent = heroSection.querySelectorAll('[data-gsap="fade-up"]');
+      if (heroContent.length) {
+        gsap.fromTo(heroContent,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+            delay: 0.4
+          }
+        );
+      }
+
+      var heroFadeIn = heroSection.querySelectorAll('[data-gsap="fade-in"]');
+      if (heroFadeIn.length) {
+        gsap.fromTo(heroFadeIn,
+          { opacity: 0 },
+          { opacity: 1, duration: 1, delay: 1.5, ease: 'power2.out' }
+        );
+      }
+    }
+
+    // --- Section Scroll Animations (fade-up) ---
+    var fadeUpElements = document.querySelectorAll('[data-gsap="fade-up"]');
+    if (fadeUpElements.length) {
+      fadeUpElements.forEach(function(el) {
+        var delay = parseFloat(el.getAttribute('data-gsap-delay')) || 0;
+        gsap.fromTo(el,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            delay: delay,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+    }
+
+    // --- Section container animations ---
+    var sections = document.querySelectorAll('[data-gsap="section"]');
+    if (sections.length) {
+      sections.forEach(function(section) {
+        gsap.fromTo(section,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 90%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+    }
+
+    // --- Fade-in elements ---
+    var fadeInElements = document.querySelectorAll('[data-gsap="fade-in"]');
+    if (fadeInElements.length) {
+      fadeInElements.forEach(function(el) {
+        var delay = parseFloat(el.getAttribute('data-gsap-delay')) || 0;
+        gsap.fromTo(el,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: delay,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+    }
+
+    // --- Counter animation (for stats if any) ---
+    var counters = document.querySelectorAll('[data-gsap="counter"]');
+    if (counters.length) {
+      counters.forEach(function(counter) {
+        var target = parseFloat(counter.getAttribute('data-target')) || 0;
+        var suffix = counter.getAttribute('data-suffix') || '';
+        var duration = parseFloat(counter.getAttribute('data-duration')) || 2;
+
+        gsap.fromTo(counter,
+          { textContent: 0 },
+          {
+            textContent: target,
+            duration: duration,
+            ease: 'power2.out',
+            snap: { textContent: 1 },
+            scrollTrigger: {
+              trigger: counter,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            },
+            onUpdate: function() {
+              counter.textContent = Math.round(counter.textContent) + suffix;
+            }
+          }
+        );
+      });
+    }
+
+    // --- Card stagger animations inside sections ---
+    var cardGrids = document.querySelectorAll('.grid');
+    if (cardGrids.length) {
+      cardGrids.forEach(function(grid) {
+        var cards = grid.querySelectorAll('.group');
+        if (cards.length > 2) {
+          gsap.fromTo(cards,
+            { y: 30, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.5,
+              stagger: 0.08,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: grid,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      });
+    }
+
+    // --- Refresh ScrollTrigger on page load ---
+    ScrollTrigger.refresh();
+
+    console.log('[杨帆云] GSAP animations initialized successfully');
+  };
+
+  // If GSAP already loaded, init immediately
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    initGSAP();
+  } else {
+    // Wait for document ready then check again
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initGSAP, 200);
+      });
+    } else {
+      setTimeout(initGSAP, 200);
+    }
+  }
+})();
+</script>
