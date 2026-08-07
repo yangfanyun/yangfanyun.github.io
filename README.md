@@ -64,7 +64,7 @@
 
 > 💡 **建议**：如果你是第一次购买机场，可以先从一个便宜的套餐入手试试水，体验一下速度、稳定性和客服水平，满意了再续费。
 
-![什么是杨帆云](img/what-is-airport.webp)
+![什么是杨帆云](img/clash免费节点.png)
 *图中展示了从用户设备通过机场节点访问全球互联网的示意图，节点分布在亚洲、欧洲和美洲*
 
 ---
@@ -113,7 +113,7 @@
 
 > ⚠️ **注意**：如果一个机场的群组里全是负面消息，或者群组根本搜不到，那就要格外小心了。
 
-![如何选择机场](img/how-to-choose.webp)
+![如何选择机场](img/clash verge节点购买.png)
 *选择机场时需要综合考量节点质量、线路类型、流媒体解锁和客服响应等多个维度*
 
 ---
@@ -155,7 +155,7 @@ ChatGPT、Claude、Gemini、Copilot 这些 AI 工具在国内使用时被限制�
 | 🎬 影音用户 | ⭐⭐⭐ | 轻度可以，重度不够 |
 | 🎮 游戏玩家 | ⭐ | 建议选高端机场 |
 
-![杨帆云用户群体](img/users.webp)
+![杨帆云用户群体](img/clash verge免费节点.png)
 *杨帆云覆盖学生、开发者、AI 用户、海外华人等多种人群*
 
 ---
@@ -216,9 +216,9 @@ ChatGPT、Claude、Gemini、Copilot 这些 AI 工具在国内使用时被限制�
 
 > ⚠️ **不要公开分享你的订阅链接**！订阅链接相当于你的账号密码，别人拿到后可以消耗你的流量。
 
-![Clash 使用教程](img/clash.webp)
+![Clash 使用教程](img/clash节点购买.png)
 *Clash Verge 客户端界面，展示订阅导入和节点选择操作*
-![Shadowrocket 使用教程](img/shadowrocket.webp)
+![Shadowrocket 使用教程](img/clash订阅地址.png)
 *Shadowrocket iOS 客户端界面，展示订阅管理和节点切换*
 
 ---
@@ -270,7 +270,7 @@ ChatGPT、Claude、Gemini、Copilot 这些 AI 工具在国内使用时被限制�
 | 🥈 良好 | 1-4 小时 | Telegram 群 |
 | 🥉 一般 | 半天以上 | 仅邮件 |
 
-![判断机场稳定性](img/stable.webp)
+![判断机场稳定性](img/v2rayng免费节点.png)
 *评测一个机场需要从速度、稳定性、流媒体解锁、性价比多个维度打分*
 
 ---
