@@ -3,11 +3,6 @@
 
     <!-- 弹窗主体 -->
     <div class="popup-content">
-      <a
-            href="https://ml.yfqz1.net/register?code=PCC6A3bC"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="popup-link">
         <!-- 关闭按钮 -->
         <button
             type="button"
@@ -15,12 +10,11 @@
             id="popupCloseBtn"
             aria-label="关闭弹窗">
             ×
-        </button> </a>
-
+        </button>
 
         <!-- Clash 推荐 -->
         <a
-            href="https://ml.yfqz1.net/register?code=PCC6A3bC"
+            href="https://ml.yfqz1.net/register?code=***"
             target="_blank"
             rel="noopener noreferrer"
             class="popup-link">
@@ -81,7 +75,9 @@
 
 
         /* 点击关闭按钮 */
-        closeBtn.addEventListener("click", function () {
+        closeBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             popup.classList.remove("show");
         });
 
@@ -149,7 +145,8 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
         </div>
-    </nav><!-- 弹窗外层 -->
+    </nav>
 
     
 </header>
+
