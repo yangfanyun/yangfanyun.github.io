@@ -35,5 +35,116 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
         </div>
-    </nav>
+    </nav><!-- 弹窗外层 -->
+<div id="popupOverlay">
+
+    <!-- 弹窗主体 -->
+    <div class="popup-content">
+
+        <!-- 关闭按钮 -->
+        <button
+            type="button"
+            class="popup-close-btn"
+            id="popupCloseBtn"
+            aria-label="关闭弹窗">
+            ×
+        </button>
+
+
+        <!-- Clash 推荐 -->
+        <a
+            href="https://ml.yfqz1.net/register?code=PCC6A3bC"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="popup-link">
+
+            <h2 class="popup-title">
+                🚀 Clash高速节点推荐
+            </h2>
+
+            <p class="popup-desc">
+                稳定线路 · 高速访问 · 多平台支持
+            </p>
+
+            <img
+                src="https://free.picui.cn/free/2026/06/05/6a229370bf0c1.png"
+                alt="Clash节点推荐"
+                class="popup-image">
+
+        </a>
+
+
+        <!-- Shadowrocket -->
+        <div class="popup-shop-box">
+
+            <a
+                href="http://shop.xinkonyun.cc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="popup-shop-btn">
+
+                购买 Shadowrocket 独享账号 / 海外账号
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+(function () {
+
+    function initPopup() {
+
+        var popup = document.getElementById("popupOverlay");
+        var closeBtn = document.getElementById("popupCloseBtn");
+
+        if (!popup || !closeBtn) {
+            console.error("弹窗元素加载失败");
+            return;
+        }
+
+        /* 8秒后显示弹窗 */
+        setTimeout(function () {
+            popup.classList.add("show");
+        }, 8000);
+
+
+        /* 点击关闭按钮 */
+        closeBtn.addEventListener("click", function () {
+            popup.classList.remove("show");
+        });
+
+
+        /* 点击黑色背景关闭 */
+        popup.addEventListener("click", function (event) {
+
+            if (event.target === popup) {
+                popup.classList.remove("show");
+            }
+
+        });
+
+    }
+
+
+    /* 确保DOM加载完成后执行 */
+    if (document.readyState === "loading") {
+
+        document.addEventListener("DOMContentLoaded", initPopup);
+
+    } else {
+
+        initPopup();
+
+    }
+
+})();
+</script>
+
+<!-- ==================== 弹窗结束 ==================== -->
+    
 </header>
