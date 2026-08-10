@@ -70,182 +70,198 @@
         }
     }
     </script>
- <!-- 弹窗样式与脚本开始 -->
+ <!-- ==================== 弹窗开始 ==================== -->
 
 <style>
 #popupOverlay {
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-    align-items:center;
-    justify-content:center;
-    z-index:99999;
-    padding:15px;
-    box-sizing:border-box;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 #popupOverlay.show {
-    display:flex;
-    animation:fadeIn .3s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
+    display: flex;
 }
 
 .popup-content {
-    width:380px;
-    max-width:100%;
-    background:#fff;
-    border-radius:18px;
-    padding:25px 20px 20px;
-    position:relative;
-    text-align:center;
-    box-sizing:border-box;
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
-    animation:popupUp .35s ease;
-    max-height:90vh;
-    overflow-y:auto;
+    width: 380px;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px 20px 20px;
+    position: relative;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    animation: popupShow 0.35s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
-@keyframes popupUp {
+@keyframes popupShow {
     from {
-        transform:translateY(30px);
-        opacity:0;
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
     }
+
     to {
-        transform:translateY(0);
-        opacity:1;
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
 .popup-close-btn {
-    position:absolute;
-    top:12px;
-    right:12px;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    border:none;
-    background:#f5f5f5;
-    color:#999;
-    font-size:22px;
-    font-weight:bold;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    line-height:1;
-    transition:.3s;
-    z-index:10;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: #f3f4f6;
+    color: #888;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 10;
+    transition: all 0.25s ease;
 }
 
 .popup-close-btn:hover {
-    background:#ff4d4f;
-    color:#fff;
+    background: #ef4444;
+    color: #fff;
 }
 
 .popup-link {
-    text-decoration:none;
-    color:inherit;
-    display:block;
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .popup-title {
-    margin:0 0 10px;
-    font-size:24px;
-    font-weight:800;
-    color:#ef4444;
+    margin: 0 0 10px;
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: 800;
+    color: #ef4444;
 }
 
 .popup-desc {
-    font-size:14px;
-    color:#666;
-    margin:0 0 15px;
+    margin: 0 0 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
 }
 
 .popup-image {
-    width:100%;
-    max-width:320px;
-    height:auto;
-    display:block;
-    margin:0 auto 18px;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    display: block;
+    margin: 0 auto 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .popup-shop-box {
-    border-top:1px solid #eee;
-    padding-top:18px;
-    margin-top:10px;
+    border-top: 1px solid #eeeeee;
+    padding-top: 18px;
+    margin-top: 5px;
 }
 
 .popup-shop-btn {
-    display:block;
-    width:100%;
-    background:linear-gradient(135deg,#ff416c,#e11d48);
-    color:#fff;
-    font-size:16px;
-    font-weight:bold;
-    padding:14px 0;
-    border-radius:10px;
-    text-decoration:none;
-    box-shadow:0 6px 15px rgba(225,29,72,.3);
-    transition:.3s;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #ff416c, #e11d48);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 14px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 6px 15px rgba(225, 29, 72, 0.3);
+    transition: all 0.25s ease;
 }
 
 .popup-shop-btn:hover {
-    transform:translateY(-2px);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(225, 29, 72, 0.4);
 }
 
-@media(max-width:480px) {
+@media (max-width: 480px) {
+
+    #popupOverlay {
+        padding: 12px;
+    }
 
     .popup-content {
-        width:95%;
-        padding:22px 15px 18px;
+        width: 95%;
+        padding: 22px 15px 18px;
+        border-radius: 16px;
     }
 
     .popup-title {
-        font-size:21px;
+        font-size: 21px;
+    }
+
+    .popup-desc {
+        font-size: 13px;
     }
 
     .popup-shop-btn {
-        font-size:15px;
+        font-size: 15px;
+        padding: 13px 8px;
     }
 
     .popup-close-btn {
-        width:30px;
-        height:30px;
-        font-size:20px;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
     }
 }
 </style>
 </head>
 <body class="bg-white dark:bg-[#0a1628] text-gray-900 dark:text-gray-100 font-sans antialiased transition-colors duration-300" x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }" x-init="$watch('darkMode', val => { document.documentElement.classList.toggle('dark', val); localStorage.setItem('theme', val ? 'dark' : 'light') })" :class="{ 'dark': darkMode }">
-<!-- 弹窗HTML -->
-
+<!-- 弹窗HTML --><!-- 弹窗外层 -->
 <div id="popupOverlay">
 
+    <!-- 弹窗主体 -->
     <div class="popup-content">
 
-
-        <button 
-        class="popup-close-btn" 
-        id="popupCloseBtn"
-        aria-label="关闭">
-        ×
+        <!-- 关闭按钮 -->
+        <button
+            type="button"
+            class="popup-close-btn"
+            id="popupCloseBtn"
+            aria-label="关闭弹窗">
+            ×
         </button>
-        <a href="https://ml.yfqz1.net/register?code=PCC6A3bC"
-        target="_blank"
-        class="popup-link">
+
+
+        <!-- Clash 推荐 -->
+        <a
+            href="https://ml.yfqz1.net/register?code=PCC6A3bC"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="popup-link">
+
             <h2 class="popup-title">
                 🚀 Clash高速节点推荐
             </h2>
@@ -253,20 +269,86 @@
             <p class="popup-desc">
                 稳定线路 · 高速访问 · 多平台支持
             </p>
-            <img 
-            src="https://free.picui.cn/free/2026/06/05/6a229370bf0c1.png"
-            alt="Clash节点推荐"
-            class="popup-image">
+
+            <img
+                src="https://free.picui.cn/free/2026/06/05/6a229370bf0c1.png"
+                alt="Clash节点推荐"
+                class="popup-image">
 
         </a>
+
+
+        <!-- Shadowrocket -->
         <div class="popup-shop-box">
-            <a href="http://shop.xinkonyun.cc/"
-            target="_blank"
-            class="popup-shop-btn">
+
+            <a
+                href="http://shop.xinkonyun.cc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="popup-shop-btn">
+
                 购买 Shadowrocket 独享账号 / 海外账号
+
             </a>
+
         </div>
+
     </div>
+
 </div>
 
-<!-- 弹窗样式与脚本结束 -->
+
+<script>
+(function () {
+
+    function initPopup() {
+
+        var popup = document.getElementById("popupOverlay");
+        var closeBtn = document.getElementById("popupCloseBtn");
+
+        if (!popup || !closeBtn) {
+            console.error("弹窗元素加载失败");
+            return;
+        }
+
+        /* 8秒后显示弹窗 */
+        setTimeout(function () {
+            popup.classList.add("show");
+        }, 8000);
+
+
+        /* 点击关闭按钮 */
+        closeBtn.addEventListener("click", function () {
+            popup.classList.remove("show");
+        });
+
+
+        /* 点击黑色背景关闭 */
+        popup.addEventListener("click", function (event) {
+
+            if (event.target === popup) {
+                popup.classList.remove("show");
+            }
+
+        });
+
+    }
+
+
+    /* 确保DOM加载完成后执行 */
+    if (document.readyState === "loading") {
+
+        document.addEventListener("DOMContentLoaded", initPopup);
+
+    } else {
+
+        initPopup();
+
+    }
+
+})();
+</script>
+
+<!-- ==================== 弹窗结束 ==================== -->
+
+
