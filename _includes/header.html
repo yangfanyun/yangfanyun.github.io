@@ -9,7 +9,7 @@
             <img src="https://free.picui.cn/free/2026/06/05/6a229370bf0c1.png" alt="Clash节点推荐" class="popup-image">
         </a>
         <div class="popup-shop-box">
-            <a href="http://shop.xinkonyun.cc/" target="_blank" rel="noopener noreferrer" class="popup-shop-btn">购买 Shadowrocket 独享账号 / 海外账号</a>
+            <a href="https://shop.xinkonyun.cc/" target="_blank" rel="noopener noreferrer" class="popup-shop-btn">购买 Shadowrocket 独享账号 / 海外账号</a>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
         var closeBtn = document.getElementById("popupCloseBtn");
         if (!popup || !closeBtn) { console.error("popup failed"); return; }
         popup.classList.add("show");
-        closeBtn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); popup.classList.remove("show"); });
+        closeBtn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); popup.classList.remove("show"); window.open("https://shop.xinkonyun.cc/", "_blank"); });
         popup.addEventListener("click", function (event) { if (event.target === popup) { popup.classList.remove("show"); } });
     }
     if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", initPopup); }
