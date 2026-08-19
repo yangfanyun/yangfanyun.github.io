@@ -1,35 +1,4 @@
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" x-data="{ scrolled: false }" @scroll.window="scrolled = window.scrollY > 20" :class="scrolled ? 'bg-white/80 dark:bg-[#0a1628]/80 backdrop-blur-xl shadow-sm' : 'bg-transparent'">
-    <div id="popupOverlay">
-
-    <div class="popup-content">
-        <button type="button" class="popup-close-btn" id="popupCloseBtn" aria-label="close">x</button>
-        <a href="https://ml.yfqz1.net/register?code=***" target="_blank" rel="noopener noreferrer" class="popup-link">
-            <h2 class="popup-title">Clash高速节点推荐</h2>
-            <p class="popup-desc">稳定线路 · 高速访问 · 多平台支持</p>
-            <img src="https://free.picui.cn/free/2026/06/05/6a229370bf0c1.png" alt="Clash节点推荐" class="popup-image">
-        </a>
-        <div class="popup-shop-box">
-            <a href="https://shop.xinkonyun.cc/" target="_blank" rel="noopener noreferrer" class="popup-shop-btn">购买 Shadowrocket 独享账号 / 海外账号</a>
-        </div>
-    </div>
-
-</div>
-
-<script>
-(function () {
-    function initPopup() {
-        var popup = document.getElementById("popupOverlay");
-        var closeBtn = document.getElementById("popupCloseBtn");
-        if (!popup || !closeBtn) { console.error("popup failed"); return; }
-        popup.classList.add("show");
-        closeBtn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); popup.classList.remove("show"); window.open("https://shop.xinkonyun.cc/", "_blank"); });
-        popup.addEventListener("click", function (event) { if (event.target === popup) { popup.classList.remove("show"); } });
-    }
-    if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", initPopup); }
-    else { initPopup(); }
-})();
-</script>
-
     <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="{{ '/' | relative_url }}" class="flex items-center space-x-2 group">
             <svg class="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -55,3 +24,33 @@
         </div>
     </nav>
 </header>
+
+<!-- Popup overlay must be a body-level sibling of the fixed header so it remains viewport-fixed while scrolling. -->
+<div id="popupOverlay">
+    <div class="popup-content">
+        <button type="button" class="popup-close-btn" id="popupCloseBtn" aria-label="close">x</button>
+        <a href="https://ml.yfqz1.net/register?code=***" target="_blank" rel="noopener noreferrer" class="popup-link">
+            <h2 class="popup-title">Clash高速节点推荐</h2>
+            <p class="popup-desc">稳定线路 · 高速访问 · 多平台支持</p>
+            <img src="https://free.picui.cn/free/2026/06/05/6a229370bf0c1.png" alt="Clash节点推荐" class="popup-image">
+        </a>
+        <div class="popup-shop-box">
+            <a href="https://shop.xinkonyun.cc/" target="_blank" rel="noopener noreferrer" class="popup-shop-btn">购买 Shadowrocket 独享账号 / 海外账号</a>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    function initPopup() {
+        var popup = document.getElementById("popupOverlay");
+        var closeBtn = document.getElementById("popupCloseBtn");
+        if (!popup || !closeBtn) { console.error("popup failed"); return; }
+        popup.classList.add("show");
+        closeBtn.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); popup.classList.remove("show"); window.open("https://shop.xinkonyun.cc/", "_blank"); });
+        popup.addEventListener("click", function (event) { if (event.target === popup) { popup.classList.remove("show"); } });
+    }
+    if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", initPopup); }
+    else { initPopup(); }
+})();
+</script>
